@@ -13,9 +13,5 @@ export interface LogoComponentsProps {
 export const LogoComponent = ({ place }: LogoComponentsProps) => {
   const logo = place === 'header' ? HeaderLogo : FooterLogo;
 
-  return (
-    <div>
-      <Logo src={logo} alt={'СКАН'} />
-    </div>
-  );
+  return <Logo src={logo} alt={'СКАН'} />;
 };
