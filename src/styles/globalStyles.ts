@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import Ferry from '../assets/fonts/ferry_black.otf';
 
 export const colors = {
   primary: {
@@ -11,6 +12,11 @@ export const colors = {
     lightTeal: 'rgba(124, 227, 225, 1)',
     blue: 'rgba(89, 112, 255, 1)',
   },
+};
+
+export const fonts = {
+  inter: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif',
+  ferry: Ferry,
 };
 
 export const GlobalStyles = createGlobalStyle`
