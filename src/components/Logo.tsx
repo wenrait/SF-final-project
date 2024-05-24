@@ -15,7 +15,7 @@ export const LogoComponent = ({ place }: LogoComponentsProps) => {
 
   return (
     <div>
-      <img src={logo} alt={'СКАН'} />
+      <Logo src={logo} alt={'СКАН'} />
     </div>
   );
 };
