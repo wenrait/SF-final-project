@@ -160,7 +160,7 @@ export const HomeComponent = () => {
               Комплексный анализ публикаций, получение данных в формате PDF на
               электронную почту.
             </HeaderDescription>
-            <HeaderButton onClick={handleClick}>Запросить данные</HeaderButton>
+            <HeaderButton>Запросить данные</HeaderButton>
           </HeaderLeft>
           <img src={homeSvg1} alt={''} />
         </HomeHeader>
