@@ -7,7 +7,7 @@ import carouselSvg2 from './../assets/svg/Home__Carousel--2.svg';
 import carouselSvg3 from './../assets/svg/Home__Carousel--3.svg';
 import arrowLeft from './../assets/svg/Home__Carousel__arrow--left.svg';
 import arrowRight from './../assets/svg/Home__Carousel__arrow--right.svg';
-import { usePostAuthDataMutation } from '../api/login-api.ts';
+// import { usePostAuthDataMutation } from '../api/login-api.ts';
 
 const HomeWrapper = styled.div`
   width: 100%;
