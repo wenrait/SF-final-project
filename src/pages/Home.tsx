@@ -121,6 +121,24 @@ const RightButton = styled.button`
   right: 0;
 `;
 
+const RatesContainer = styled.section`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+`;
+
+const RatesTitile = styled.h2`
+  margin: 0;
+  font-weight: 900;
+  font-size: 45px;
+`;
+
+const Rates = styled.div`
+  display: flex;
+  gap: 30px;
+`;
+
 export const HomeComponent = () => {
   // const [postAuthData] = usePostAuthDataMutation();
   //
