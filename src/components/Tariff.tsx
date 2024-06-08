@@ -200,8 +200,8 @@ export const TariffComponent = ({ type }: TariffComponentProps) => {
         <ListContainer>
           <ListTitle>В тариф входит:</ListTitle>
           <List>
-            {features.map((feature) => (
-              <ListItem>{feature}</ListItem>
+            {features.map((feature, index) => (
+              <ListItem key={`tariff-feature-${index}`}>{feature}</ListItem>
             ))}
           </List>
         </ListContainer>
