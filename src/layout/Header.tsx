@@ -1,8 +1,10 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { colors } from '../styles/globalStyles.ts';
 import { LogoComponent } from '../components/Logo.tsx';
 import authDivider from '../assets/svg/auth__divider.svg';
+import { useAppDispatch, useAppSelector } from '../hooks.ts';
+import { setAuthData } from '../redux/authSlice.ts';
 
 const HeaderWrapper = styled.header`
   width: 100%;
@@ -78,11 +80,32 @@ const AuthDivider = styled.img`
 `;
 
 export const HeaderComponent = () => {
+  const isAuthenticated = useAppSelector(
+    (state) => state.authReducer.isAuthenticated,
+  );
+  const dispatch = useAppDispatch();
+
+  const handleClick = () => {
+    try {
+      dispatch(
+        setAuthData({
+          accessToken: null,
+          expire: null,
+          isAuthenticated: false,
+        }),
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <HeaderWrapper>
       <HeaderContent>
         <LogoWrapper>
-          <LogoComponent place={'header'} />
+          <Link to={'/'}>
+            <LogoComponent place={'header'} />
+          </Link>
         </LogoWrapper>
         <HeaderNav>
           <StyledNavLink to={'/'}>Главная</StyledNavLink>
@@ -90,11 +113,20 @@ export const HeaderComponent = () => {
           <StyledNavLink to={'/'}>FAQ</StyledNavLink>
         </HeaderNav>
         <AuthContainer>
-          <AuthButtons>
-            <AuthLink href={'/'}>Зарегистрироваться</AuthLink>
-            <AuthDivider src={authDivider} alt={''} />
-            <AuthButton>Войти</AuthButton>
-          </AuthButtons>
+          {isAuthenticated ? (
+            <div>
+              <div>You're logged in</div>
+              <button onClick={handleClick}>Выйти</button>
+            </div>
+          ) : (
+            <AuthButtons>
+              <AuthLink href={'/'}>Зарегистрироваться</AuthLink>
+              <AuthDivider src={authDivider} alt={''} />
+              <Link to={'/login'}>
+                <AuthButton>Войти</AuthButton>
+              </Link>
+            </AuthButtons>
+          )}
         </AuthContainer>
       </HeaderContent>
     </HeaderWrapper>
