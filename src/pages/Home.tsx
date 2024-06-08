@@ -10,14 +10,14 @@ import { TariffComponent } from '../components/Tariff.tsx';
 import { ButtonComponent } from '../components/Button.tsx';
 // import { usePostAuthDataMutation } from '../api/login-api.ts';
 
-const HomeWrapper = styled.div`
+const Home = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-const HomeContent = styled.div`
+const Content = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -29,7 +29,7 @@ const HomeContent = styled.div`
   gap: 100px;
 `;
 
-const HomeHeader = styled.section`
+const Header = styled.section`
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -57,7 +57,7 @@ const HeaderDescription = styled.p`
   margin: 0 0 50px;
 `;
 
-const CarouselContainer = styled.section`
+const Section = styled.section`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -115,46 +115,17 @@ const RightButton = styled.button`
   right: 0;
 `;
 
-const TariffsContainer = styled.section`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 70px;
-`;
-
 const Tariffs = styled.div`
   display: flex;
   gap: 30px;
   margin-bottom: 100px;
 `;
 
-export const HomeComponent = () => {
-  // const [postAuthData] = usePostAuthDataMutation();
-  //
-  // let token = '';
-  //
-  // const handleClick = async () => {
-  //   try {
-  //     const { data, error } = await postAuthData({
-  //       login,
-  //       password,
-  //     });
-  //     if (error) {
-  //       console.error(error.data.message);
-  //     }
-  //     if (data) {
-  //       token = data.accessToken;
-  //       console.log(token);
-  //     }
-  //   } catch (error) {
-  //     console.log(`Error: ${error}`);
-  //   }
-  // };
-
+export const HomePage = () => {
   return (
-    <HomeWrapper>
-      <HomeContent>
-        <HomeHeader>
+    <Home>
+      <Content>
+        <Header>
           <HeaderLeft>
             <HeaderTitle>
               сервис по поиску
@@ -174,8 +145,8 @@ export const HomeComponent = () => {
             />
           </HeaderLeft>
           <img src={homeSvg1} alt={''} />
-        </HomeHeader>
-        <CarouselContainer>
+        </Header>
+        <Section>
           <Subtitle>Почему именно мы</Subtitle>
           <Carousel>
             <LeftButton>
@@ -204,16 +175,16 @@ export const HomeComponent = () => {
             </RightButton>
           </Carousel>
           <img src={homeSvg2} alt={''} />
-        </CarouselContainer>
-        <TariffsContainer>
+        </Section>
+        <Section>
           <Subtitle>Наши тарифы</Subtitle>
           <Tariffs>
             <TariffComponent type={'beginner'} />
             <TariffComponent type={'pro'} />
             <TariffComponent type={'business'} />
           </Tariffs>
-        </TariffsContainer>
-      </HomeContent>
-    </HomeWrapper>
+        </Section>
+      </Content>
+    </Home>
   );
 };

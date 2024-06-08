@@ -4,6 +4,7 @@ import { setAuthData } from '../redux/authSlice.ts';
 import { ButtonComponent } from '../components/Button.tsx';
 import { useAppDispatch } from '../hooks.ts';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const LoginWrapper = styled.div`
   display: flex;
@@ -15,6 +16,7 @@ export const LoginPage = () => {
   const [password, setPassword] = useState('');
   const [log, setLog] = useState('');
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const [postAuthData, { isLoading }] = usePostAuthDataMutation();
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -29,12 +31,8 @@ export const LoginPage = () => {
             setLog(errorMsg);
           }
         } else {
-          const payload = {
-            accessToken: data.accessToken,
-            expire: data.expire,
-            isAuthenticated: true,
-          };
-          dispatch(setAuthData(payload));
+          dispatch(setAuthData({ ...data, isAuthenticated: true }));
+          navigate('/');
         }
       } catch (e) {
         setLog((e as Error).message);
