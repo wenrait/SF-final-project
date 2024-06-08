@@ -5,6 +5,10 @@ import iconPro from '../assets/svg/Tariff__pro.svg';
 import iconBusiness from '../assets/svg/Tariff__business.svg';
 import iconList from '../assets/svg/Tariff__list__icon.svg';
 
+export interface TariffComponentProps {
+  type: 'beginner' | 'pro' | 'business';
+}
+
 const tariffs = {
   beginner: {
     header: {
@@ -59,7 +63,7 @@ const tariffs = {
   },
 };
 
-const Tariff = styled.div<{ type: 'beginner' | 'pro' | 'business' }>`
+const Tariff = styled.div<TariffComponentProps>`
   border: ${(props) =>
     props.type === 'beginner' ? `2px solid ${colors.secondary.orange}` : 0};
   border-radius: 10px;
@@ -67,7 +71,7 @@ const Tariff = styled.div<{ type: 'beginner' | 'pro' | 'business' }>`
   flex: 1;
 `;
 
-const Header = styled.div<{ type: 'beginner' | 'pro' | 'business' }>`
+const Header = styled.div<TariffComponentProps>`
   background: ${(props) => {
     switch (props.type) {
       case 'beginner':
@@ -163,10 +167,6 @@ const ListItem = styled.li`
     top: 2px;
   }
 `;
-
-export interface TariffComponentProps {
-  type: 'beginner' | 'pro' | 'business';
-}
 
 export const TariffComponent = ({ type }: TariffComponentProps) => {
   const { icon, title, description } = tariffs[type].header;
