@@ -7,6 +7,7 @@ import carouselSvg2 from './../assets/svg/Home__Carousel--2.svg';
 import carouselSvg3 from './../assets/svg/Home__Carousel--3.svg';
 import arrowLeft from './../assets/svg/Home__Carousel__arrow--left.svg';
 import arrowRight from './../assets/svg/Home__Carousel__arrow--right.svg';
+import { TariffComponent } from '../components/Tariff.tsx';
 // import { usePostAuthDataMutation } from '../api/login-api.ts';
 
 const HomeWrapper = styled.div`
@@ -121,20 +122,21 @@ const RightButton = styled.button`
   right: 0;
 `;
 
-const RatesContainer = styled.section`
+const TariffsContainer = styled.section`
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 70px;
 `;
 
-const RatesTitile = styled.h2`
+const TariffsTitle = styled.h2`
   margin: 0;
   font-weight: 900;
   font-size: 45px;
+  text-transform: uppercase;
 `;
 
-const Rates = styled.div`
+const Tariffs = styled.div`
   display: flex;
   gap: 30px;
 `;
@@ -202,7 +204,7 @@ export const HomeComponent = () => {
             <CarouselItem>
               <StyledImage src={carouselSvg3} alt={''} />
               <span>
-                Защита конфеденциальных сведений, не подлежащих разглашению по
+                Защита конфиденциальных сведений, не подлежащих разглашению по
                 федеральному законодательству
               </span>
             </CarouselItem>
@@ -212,6 +214,14 @@ export const HomeComponent = () => {
           </Carousel>
           <img src={homeSvg2} alt={''} />
         </CarouselContainer>
+        <TariffsContainer>
+          <TariffsTitle>Наши тарифы</TariffsTitle>
+          <Tariffs>
+            <TariffComponent type={'beginner'} />
+            <TariffComponent type={'pro'} />
+            <TariffComponent type={'business'} />
+          </Tariffs>
+        </TariffsContainer>
       </HomeContent>
     </HomeWrapper>
   );
