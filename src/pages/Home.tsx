@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { colors, fonts } from '../styles/globalStyles.ts';
+import { fonts } from '../styles/globalStyles.ts';
 import homeSvg1 from './../assets/svg/home__1.svg';
 import homeSvg2 from './../assets/svg/home__2.svg';
 import carouselSvg1 from './../assets/svg/Home__Carousel--1.svg';
@@ -8,6 +8,7 @@ import carouselSvg3 from './../assets/svg/Home__Carousel--3.svg';
 import arrowLeft from './../assets/svg/Home__Carousel__arrow--left.svg';
 import arrowRight from './../assets/svg/Home__Carousel__arrow--right.svg';
 import { TariffComponent } from '../components/Tariff.tsx';
+import { ButtonComponent } from '../components/Button.tsx';
 // import { usePostAuthDataMutation } from '../api/login-api.ts';
 
 const HomeWrapper = styled.div`
@@ -53,17 +54,6 @@ const HeaderTitle = styled.h1`
 const HeaderDescription = styled.p`
   margin: 0;
   font-size: 20px;
-`;
-
-const HeaderButton = styled.button`
-  background: ${colors.secondary.blue};
-  color: ${colors.primary.white};
-  font-family: ${fonts.Inter};
-  cursor: pointer;
-  border: 0;
-  border-radius: 5px;
-  padding: 16px 64px;
-  width: fit-content;
 `;
 
 const CarouselContainer = styled.section`
@@ -180,7 +170,11 @@ export const HomeComponent = () => {
               Комплексный анализ публикаций, получение данных в формате PDF на
               электронную почту.
             </HeaderDescription>
-            <HeaderButton>Запросить данные</HeaderButton>
+            <ButtonComponent
+              font={'medium'}
+              width={'fit-content'}
+              text={'Запросить данные'}
+            />
           </HeaderLeft>
           <img src={homeSvg1} alt={''} />
         </HomeHeader>

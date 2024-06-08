@@ -4,6 +4,7 @@ import iconBeginner from '../assets/svg/Tariff__beginner.svg';
 import iconPro from '../assets/svg/Tariff__pro.svg';
 import iconBusiness from '../assets/svg/Tariff__business.svg';
 import iconList from '../assets/svg/Tariff__list__icon.svg';
+import {ButtonComponent} from "./Button.tsx";
 
 export interface TariffComponentProps {
   type: 'beginner' | 'pro' | 'business';
@@ -204,6 +205,7 @@ export const TariffComponent = ({ type }: TariffComponentProps) => {
             ))}
           </List>
         </ListContainer>
+        <ButtonComponent font={'small'} width={'100%'} text={'Подробнее'} />
       </Content>
     </Tariff>
   );
