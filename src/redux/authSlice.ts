@@ -3,11 +3,13 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export interface IAuthState {
   accessToken: string | null;
   expire: Date | null;
+  isAuthenticated: boolean;
 }
 
 const initialState: IAuthState = {
   accessToken: null,
   expire: null,
+  isAuthenticated: false,
 };
 
 const getStateFromStorage = (): IAuthState => {
@@ -16,7 +18,13 @@ const getStateFromStorage = (): IAuthState => {
     if (!authState) {
       return initialState;
     }
-    return JSON.parse(authState);
+    const parsedState = JSON.parse(authState);
+    const expireDate = new Date(parsedState.expire).getTime();
+    if (Date.now() > expireDate) {
+      localStorage.removeItem('authState');
+      return initialState;
+    }
+    return parsedState;
   } catch (e) {
     return initialState;
   }
@@ -38,6 +46,7 @@ export const authSlice = createSlice({
     setAuthData: (state, action: PayloadAction<IAuthState>) => {
       state.accessToken = action.payload.accessToken;
       state.expire = action.payload.expire;
+      state.isAuthenticated = true;
       saveStateToStorage(state);
     },
   },
