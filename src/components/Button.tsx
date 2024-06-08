@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors, fonts } from '../styles/globalStyles.ts';
+import { colors } from '../styles/globalStyles.ts';
 
 export interface ButtonComponentProps {
   font: 'small' | 'medium';
@@ -10,7 +10,7 @@ export interface ButtonComponentProps {
 const Button = styled.button<Partial<ButtonComponentProps>>`
   background: ${colors.secondary.blue};
   color: ${colors.primary.white};
-  font-family: ${fonts.Inter};
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-size: ${(props) => (props.font === 'medium' ? '22px' : '20px')};
   font-weight: ${(props) => (props.font === 'medium' ? 500 : 400)};
   width: ${(props) => props.width};

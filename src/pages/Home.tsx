@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { fonts } from '../styles/globalStyles.ts';
 import homeSvg1 from './../assets/svg/home__1.svg';
 import homeSvg2 from './../assets/svg/home__2.svg';
 import carouselSvg1 from './../assets/svg/Home__Carousel--1.svg';
@@ -27,6 +26,7 @@ const HomeContent = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  gap: 100px;
 `;
 
 const HomeHeader = styled.section`
@@ -40,10 +40,11 @@ const HomeHeader = styled.section`
 const HeaderLeft = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 20px;
 `;
 
 const HeaderTitle = styled.h1`
-  font-family: ${fonts.Ferry};
+  font-family: Ferry, Arial, sans-serif;
   font-weight: 900;
   font-size: 60px;
   line-height: 72px;
@@ -52,8 +53,8 @@ const HeaderTitle = styled.h1`
 `;
 
 const HeaderDescription = styled.p`
-  margin: 0;
   font-size: 20px;
+  margin: 0 0 50px;
 `;
 
 const CarouselContainer = styled.section`
@@ -63,10 +64,12 @@ const CarouselContainer = styled.section`
   gap: 70px;
 `;
 
-const CarouselTitle = styled.h2`
+const Subtitle = styled.h2`
   margin: 0;
   font-weight: 900;
   font-size: 45px;
+  text-transform: uppercase;
+  font-family: Ferry, Arial, sans-serif;
 `;
 
 const Carousel = styled.div`
@@ -119,16 +122,10 @@ const TariffsContainer = styled.section`
   gap: 70px;
 `;
 
-const TariffsTitle = styled.h2`
-  margin: 0;
-  font-weight: 900;
-  font-size: 45px;
-  text-transform: uppercase;
-`;
-
 const Tariffs = styled.div`
   display: flex;
   gap: 30px;
+  margin-bottom: 100px;
 `;
 
 export const HomeComponent = () => {
@@ -179,7 +176,7 @@ export const HomeComponent = () => {
           <img src={homeSvg1} alt={''} />
         </HomeHeader>
         <CarouselContainer>
-          <CarouselTitle>Почему именно мы</CarouselTitle>
+          <Subtitle>Почему именно мы</Subtitle>
           <Carousel>
             <LeftButton>
               <StyledImage src={arrowLeft} alt={'Backwards'} />
@@ -209,7 +206,7 @@ export const HomeComponent = () => {
           <img src={homeSvg2} alt={''} />
         </CarouselContainer>
         <TariffsContainer>
-          <TariffsTitle>Наши тарифы</TariffsTitle>
+          <Subtitle>Наши тарифы</Subtitle>
           <Tariffs>
             <TariffComponent type={'beginner'} />
             <TariffComponent type={'pro'} />

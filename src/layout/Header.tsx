@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { colors, fonts } from '../styles/globalStyles.ts';
+import { colors } from '../styles/globalStyles.ts';
 import { LogoComponent } from '../components/Logo.tsx';
 import authDivider from '../assets/svg/auth__divider.svg';
 
@@ -64,7 +64,7 @@ const AuthLink = styled.a`
 const AuthButton = styled.button`
   border: 0;
   color: ${colors.primary.black};
-  font-family: ${fonts.Inter};
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   background-color: ${colors.secondary.lightTeal};
   cursor: pointer;
   border-radius: 5px;

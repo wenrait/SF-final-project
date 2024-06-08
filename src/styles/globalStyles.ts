@@ -14,14 +14,14 @@ export const colors = {
   },
 };
 
-export const fonts = {
-  Inter: 'Inter, system-ui, Avenir, Helvetica, Arial, sans-serif',
-  Ferry: Ferry,
-};
-
 export const GlobalStyles = createGlobalStyle`
+  @font-face {
+    font-family: 'Ferry';
+    src: url(${Ferry}) format('opentype');
+  }
+  
   :root {
-    font-family: ${fonts.Inter};
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
     font-weight: 400;
     
