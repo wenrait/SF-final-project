@@ -46,7 +46,7 @@ export const authSlice = createSlice({
     setAuthData: (state, action: PayloadAction<IAuthState>) => {
       state.accessToken = action.payload.accessToken;
       state.expire = action.payload.expire;
-      state.isAuthenticated = true;
+      state.isAuthenticated = action.payload.isAuthenticated;
       saveStateToStorage(state);
     },
   },
