@@ -21,7 +21,7 @@ export interface SearchHistogramsReq {
   limit: number; // Количество возвращаемых публикаций. Значение от 1 до 1000.
   sortType: 'issueDate' | 'sourceInfluence'; // Тип сортировки. issueDate — дата публикации; sourceInfluence — вес источника.
   sortDirectionType: 'desc' | 'asc'; // desc - по убыванию, asc - по возрастанию
-  attributeFilters?: Filter.Attributes; // Фильтр по атрибутам публикаций.
+  // attributeFilters?: Filter.Attributes; // Фильтр по атрибутам публикаций.
   searchArea: unknown; // В рамках данного проекта не используется.
 }
 
@@ -61,9 +61,9 @@ export namespace Search {
   // В рамках проекта объект поиска всегда будет только один.
   export interface SearchContext {
     targetSearchEntitiesContext: TargetSearchEntitiesContext; // Целевые компании/персоны поиска и их параметры.
-    searchEntitiesFilter?: Filter<Entities.SearchEntity>; // Уточняющий запрос по компаниям/персонам.
-    locationsFilter?: Search.Filter<Location>; //Уточняющий запрос по странам/регионам.
-    themesFilter?: Search.Filter<Theme>; // Уточняющий запрос по темам
+    // searchEntitiesFilter?: Filter<Entities.SearchEntity>; // Уточняющий запрос по компаниям/персонам.
+    // locationsFilter?: Search.Filter<Location>; //Уточняющий запрос по странам/регионам.
+    // themesFilter?: Search.Filter<Theme>; // Уточняющий запрос по темам
   }
 
   // Целевые компании/персоны поиска и их параметры.
