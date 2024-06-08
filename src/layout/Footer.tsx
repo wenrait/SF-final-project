@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { colors } from '../styles/globalStyles.ts';
 import { LogoComponent } from '../components/Logo.tsx';
 
-const FooterWrapper = styled.header`
+const FooterWrapper = styled.footer`
   width: 100%;
   height: 137px;
   display: flex;
