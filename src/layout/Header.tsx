@@ -3,8 +3,8 @@ import { Link, NavLink } from 'react-router-dom';
 import { colors } from '../styles/globalStyles.ts';
 import { LogoComponent } from '../components/Logo.tsx';
 import authDivider from '../assets/svg/auth__divider.svg';
-import { useAppDispatch, useAppSelector } from '../hooks.ts';
-import { setAuthData } from '../redux/authSlice.ts';
+import { useAppSelector } from '../hooks.ts';
+import { AccountComponent } from '../components/Account.tsx';
 
 const HeaderWrapper = styled.header`
   width: 100%;
@@ -83,21 +83,6 @@ export const HeaderComponent = () => {
   const isAuthenticated = useAppSelector(
     (state) => state.authReducer.isAuthenticated,
   );
-  const dispatch = useAppDispatch();
-
-  const handleClick = () => {
-    try {
-      dispatch(
-        setAuthData({
-          accessToken: null,
-          expire: null,
-          isAuthenticated: false,
-        }),
-      );
-    } catch (e) {
-      console.log(e);
-    }
-  };
 
   return (
     <HeaderWrapper>
@@ -114,10 +99,7 @@ export const HeaderComponent = () => {
         </HeaderNav>
         <AuthContainer>
           {isAuthenticated ? (
-            <div>
-              <div>You're logged in</div>
-              <button onClick={handleClick}>Выйти</button>
-            </div>
+            <AccountComponent />
           ) : (
             <AuthButtons>
               <AuthLink href={'/'}>Зарегистрироваться</AuthLink>
