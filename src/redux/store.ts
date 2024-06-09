@@ -1,15 +1,19 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { loginApi } from '../api/login-api.ts';
+import { accountLoginApi } from '../api/accountLoginApi.ts';
 import { authSlice } from './authSlice.ts';
 import { setupListeners } from '@reduxjs/toolkit/query';
+import { accountInfoApi } from '../api/accountInfoApi.ts';
 
 export const store = configureStore({
   reducer: {
     authReducer: authSlice.reducer,
-    [loginApi.reducerPath]: loginApi.reducer,
+    [accountLoginApi.reducerPath]: accountLoginApi.reducer,
+    [accountInfoApi.reducerPath]: accountInfoApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(loginApi.middleware),
+    getDefaultMiddleware()
+      .concat(accountLoginApi.middleware)
+      .concat(accountInfoApi.middleware),
 });
 
 setupListeners(store.dispatch);
