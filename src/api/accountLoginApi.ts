@@ -1,15 +1,15 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { LoginReq, LoginRes } from '../types.ts';
 
-export const loginApi = createApi({
-  reducerPath: 'loginApi',
+export const accountLoginApi = createApi({
+  reducerPath: 'accountLoginApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://gateway.scan-interfax.ru/api/v1/',
+    baseUrl: import.meta.env.VITE_API_URL,
   }),
   endpoints: (builder) => ({
     postAuthData: builder.mutation<LoginRes, LoginReq>({
       query: (body) => ({
-        url: 'account/login',
+        url: import.meta.env.VITE_ACCOUNT_LOGIN,
         method: 'POST',
         body,
       }),
@@ -17,4 +17,4 @@ export const loginApi = createApi({
   }),
 });
 
-export const { usePostAuthDataMutation } = loginApi;
+export const { usePostAuthDataMutation } = accountLoginApi;
