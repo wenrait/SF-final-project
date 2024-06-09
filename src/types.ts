@@ -9,7 +9,7 @@ export interface LoginRes {
 }
 
 export interface AccInfoResponse {
-  eventsFilterInfo: EventFiltersInfo; // Информация о лимитах онлайн-мониторинга для аккаунта.
+  eventFiltersInfo: EventFiltersInfo; // Информация о лимитах онлайн-мониторинга для аккаунта.
 }
 
 export interface SearchHistogramsReq {
