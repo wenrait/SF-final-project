@@ -4,18 +4,25 @@ import styled from 'styled-components';
 const Info = styled.div`
   padding: 12px;
   display: flex;
-  gap: 7px;
-  align-items: center;
+  gap: 8px;
+  flex-direction: column;
+  align-items: flex-end;
   justify-content: center;
   background: rgba(217, 217, 217, 0.3);
   border-radius: 5px;
   line-height: 12px;
+  @media (max-width: 600px) {
+    align-items: flex-start;
+    padding: 5px 10px;
+  }
 `;
 
 const Container = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  gap: 7px;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
 `;
 
 const Text = styled.span`
@@ -23,6 +30,7 @@ const Text = styled.span`
   opacity: 40%;
   font-size: 10px;
   margin-left: auto;
+  white-space: nowrap;
   @media (max-width: 600px) {
     font-size: 8px;
   }
@@ -59,10 +67,10 @@ export const AccountInfoComponent = () => {
       <Info>
         <Container>
           <Text>Использовано компаний</Text>
-          <Text>Лимит по компаниям</Text>
+          <Count>{data.eventFiltersInfo.usedCompanyCount}</Count>
         </Container>
         <Container>
-          <Count>{data.eventFiltersInfo.usedCompanyCount}</Count>
+          <Text>Лимит по компаниям</Text>
           <Limit>{data.eventFiltersInfo.companyLimit}</Limit>
         </Container>
       </Info>
