@@ -15,12 +15,13 @@ const FooterWrapper = styled.footer`
 const FooterContent = styled.div`
   display: flex;
   width: 100%;
-  max-width: 1320px;
+  max-width: 1440px;
   padding: 0 60px;
   justify-content: center;
   align-items: center;
   position: relative;
   font-size: 14px;
+  box-sizing: border-box;
 `;
 
 const LogoWrapper = styled.div`
