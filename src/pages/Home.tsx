@@ -68,6 +68,10 @@ const HeaderTitle = styled.h1`
 const HeaderDescription = styled.p`
   font-size: 20px;
   margin: 0 0 50px;
+  @media (max-width: 600px) {
+    font-size: 18px;
+    margin: 0;
+  }
 `;
 
 const HeaderSvg = styled.img`
@@ -77,11 +81,28 @@ const HeaderSvg = styled.img`
   }
 `;
 
+const ButtonDesktop = styled.div`
+  display: block;
+  @media (max-width: 601px) {
+    display: none;
+  }
+`;
+
+const ButtonMobile = styled.div`
+  display: none;
+  @media (max-width: 600px) {
+    display: block;
+  }
+`;
+
 const Section = styled.section`
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 70px;
+  @media (max-width: 600px) {
+    gap: 30px;
+  }
 `;
 
 const Subtitle = styled.h2`
@@ -101,6 +122,9 @@ const Tariffs = styled.div`
   gap: 30px;
   margin-bottom: 100px;
   flex-wrap: wrap;
+  @media (max-width: 600px) {
+    margin-bottom: 40px;
+  }
 `;
 
 export const HomePage = () => {
@@ -125,11 +149,22 @@ export const HomePage = () => {
               PDF на электронную почту.
             </HeaderDescription>
             {isAuthenticated && (
-              <ButtonComponent
-                font={'medium'}
-                width={'fit-content'}
-                text={'Запросить данные'}
-              />
+              <>
+                <ButtonDesktop>
+                  <ButtonComponent
+                    font={'medium'}
+                    width={'fit-content'}
+                    text={'Запросить данные'}
+                  />
+                </ButtonDesktop>
+                <ButtonMobile>
+                  <ButtonComponent
+                    font={'small'}
+                    width={'100%'}
+                    text={'Запросить данные'}
+                  />
+                </ButtonMobile>
+              </>
             )}
           </HeaderLeft>
           <HeaderSvg src={homeSvg1} alt={''} />
