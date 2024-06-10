@@ -9,7 +9,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const Carousel = styled(Slider)`
-  padding: 20px 40px;
+  padding: 0 40px;
   position: relative;
 `;
 
@@ -24,6 +24,9 @@ const CarouselItem = styled.div`
   margin: 15px;
   box-sizing: border-box;
   min-height: 270px;
+  @media (max-width: 600px) {
+    padding: 30px 16px;
+  }
 `;
 
 const Icon = styled.img`
