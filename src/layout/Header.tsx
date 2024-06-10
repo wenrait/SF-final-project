@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { colors } from '../styles/globalStyles.ts';
 import { LogoComponent } from '../components/Logo.tsx';
-import authDivider from '../assets/svg/auth__divider.svg';
 import { useAppSelector } from '../hooks.ts';
 import { AccountComponent } from '../components/Account.tsx';
 import { AccountInfoComponent } from '../components/AccountInfo.tsx';
@@ -75,20 +74,21 @@ const StyledNavLink = styled(NavLink)`
   color: ${colors.primary.black};
 `;
 
-const AuthButtons = styled.div`
+const Auth = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
 `;
 
-const AuthLink = styled.a`
+const RegLink = styled.a`
   text-decoration: none;
-  color: ${colors.primary.black};
-  opacity: 0.4;
+  color: rgba(0, 0, 0, 0.4);
+  padding: 0 18px;
+  border-right: 2px solid ${colors.primary.teal};
 `;
 
-const AuthButton = styled.button`
+const LoginButton = styled.button`
   border: 0;
   color: ${colors.primary.black};
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -98,10 +98,6 @@ const AuthButton = styled.button`
   padding: 5px 10px;
   font-weight: 500;
   font-size: 14px;
-`;
-
-const AuthDivider = styled.img`
-  display: block;
 `;
 
 const AccountInfoWrapper = styled.div`
@@ -132,14 +128,13 @@ export const HeaderComponent = () => {
   const isAuthenticated = useAppSelector(
     (state) => state.authReducer.isAuthenticated,
   );
+  const navigate = useNavigate();
 
   return (
     <HeaderWrapper>
       <HeaderContent>
         <Left>
-          <Link to={'/'}>
-            <LogoComponent place={'header'} />
-          </Link>
+          <LogoComponent place={'header'} onClick={() => navigate('/')} />
         </Left>
         <Center>
           <HeaderNav>
@@ -152,13 +147,12 @@ export const HeaderComponent = () => {
           {isAuthenticated ? (
             <AccountComponent />
           ) : (
-            <AuthButtons>
-              <AuthLink href={'/'}>Зарегистрироваться</AuthLink>
-              <AuthDivider src={authDivider} alt={''} />
-              <Link to={'/login'}>
-                <AuthButton>Войти</AuthButton>
-              </Link>
-            </AuthButtons>
+            <Auth>
+              <RegLink href={'/'}>Зарегистрироваться</RegLink>
+              <LoginButton onClick={() => navigate('/login')}>
+                Войти
+              </LoginButton>
+            </Auth>
           )}
         </Right>
         <AccountInfoWrapper>
