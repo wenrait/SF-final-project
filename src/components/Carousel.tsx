@@ -17,7 +17,7 @@ const CarouselItem = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  box-shadow: 0 0 20px 0 #00000033;
+  box-shadow: 0 0 15px 0 #00000033;
   padding: 30px 20px;
   font-size: 18px;
   border-radius: 10px;
