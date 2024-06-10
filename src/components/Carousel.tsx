@@ -44,6 +44,12 @@ const CarouselButtonCSS = css`
   cursor: pointer;
   position: absolute;
   top: calc(50% - 20px);
+  border-radius: 10px;
+  transition: 500ms;
+
+  &:hover {
+    transform: scale(1.25, 1.25);
+  }
 `;
 
 const LeftButton = styled.button`
