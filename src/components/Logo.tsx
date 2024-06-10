@@ -20,16 +20,17 @@ const LogoSmall = styled.img`
 
 export interface LogoComponentsProps {
   place: 'header' | 'footer';
+  onClick?: () => void;
 }
 
-export const LogoComponent = ({ place }: LogoComponentsProps) => {
+export const LogoComponent = ({ place, onClick }: LogoComponentsProps) => {
   const logoLarge = place === 'header' ? HeaderLogoLarge : FooterLogoLarge;
   const logoSmall = place === 'header' ? HeaderLogoSmall : FooterLogoSmall;
 
   return (
     <>
-      <LogoLarge src={logoLarge} alt="СКАН" />
-      <LogoSmall src={logoSmall} alt="СКАН" />
+      <LogoLarge src={logoLarge} alt="СКАН" onClick={onClick} />
+      <LogoSmall src={logoSmall} alt="СКАН" onClick={onClick} />
     </>
   );
 };
