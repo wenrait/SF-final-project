@@ -47,7 +47,11 @@ export const AccountInfoComponent = () => {
   }
 
   if (error) {
-    return <Info>{error.data.message}</Info>;
+    if ('status' in error) {
+      const errorMsg =
+        'error' in error ? error.error : JSON.stringify(error.data);
+      return <Info>{errorMsg}</Info>;
+    }
   }
 
   if (data) {
