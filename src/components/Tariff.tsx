@@ -71,6 +71,11 @@ const Tariff = styled.div<TariffComponentProps>`
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
   flex: 1;
   min-width: 405px;
+  @media (max-width: 600px) {
+    width: 100%;
+    flex: 1;
+    min-width: 300px;
+  }
 `;
 
 const Header = styled.div<TariffComponentProps>`
@@ -104,6 +109,9 @@ const Icon = styled.img`
   position: absolute;
   top: 11px;
   right: 16px;
+  @media (max-width: 600px) {
+    width: 20%;
+  }
 `;
 
 const Content = styled.div`
