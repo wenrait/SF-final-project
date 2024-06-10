@@ -17,12 +17,27 @@ const HeaderWrapper = styled.header`
 const HeaderContent = styled.div`
   display: flex;
   width: 100%;
-  max-width: 1320px;
+  max-width: 1440px;
   padding: 0 60px;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   position: relative;
   font-size: 14px;
+  box-sizing: border-box;
+`;
+
+const HeaderAside = styled.div`
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const HeaderCenter = styled.div`
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
 `;
 
 const HeaderNav = styled.nav`
@@ -35,19 +50,6 @@ const StyledNavLink = styled(NavLink)`
   font-size: 14px;
   text-decoration: none;
   color: ${colors.primary.black};
-`;
-
-const LogoWrapper = styled.div`
-  position: absolute;
-  left: 60px;
-`;
-
-const AuthContainer = styled.div`
-  position: absolute;
-  right: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 const AuthButtons = styled.div`
@@ -87,17 +89,19 @@ export const HeaderComponent = () => {
   return (
     <HeaderWrapper>
       <HeaderContent>
-        <LogoWrapper>
+        <HeaderAside>
           <Link to={'/'}>
             <LogoComponent place={'header'} />
           </Link>
-        </LogoWrapper>
-        <HeaderNav>
-          <StyledNavLink to={'/'}>Главная</StyledNavLink>
-          <StyledNavLink to={'/'}>Тарифы</StyledNavLink>
-          <StyledNavLink to={'/'}>FAQ</StyledNavLink>
-        </HeaderNav>
-        <AuthContainer>
+        </HeaderAside>
+        <HeaderCenter>
+          <HeaderNav>
+            <StyledNavLink to={'/'}>Главная</StyledNavLink>
+            <StyledNavLink to={'/'}>Тарифы</StyledNavLink>
+            <StyledNavLink to={'/'}>FAQ</StyledNavLink>
+          </HeaderNav>
+        </HeaderCenter>
+        <HeaderAside>
           {isAuthenticated ? (
             <AccountComponent />
           ) : (
@@ -109,7 +113,7 @@ export const HeaderComponent = () => {
               </Link>
             </AuthButtons>
           )}
-        </AuthContainer>
+        </HeaderAside>
       </HeaderContent>
     </HeaderWrapper>
   );
