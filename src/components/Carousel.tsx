@@ -13,12 +13,6 @@ const Carousel = styled(Slider)`
   position: relative;
 `;
 
-// const Carousel = styled.div`
-//   display: flex;
-//   gap: 40px;
-//   transition: 500ms;
-// `;
-
 const CarouselItem = styled.div`
   display: flex;
   flex-direction: column;
@@ -59,7 +53,11 @@ const RightButton = styled.button`
   right: 0;
 `;
 
-function SampleNextArrow(props) {
+export interface SampleArrow {
+  onClick?: () => void;
+}
+
+function SampleNextArrow(props: SampleArrow) {
   const { onClick } = props;
   return (
     <RightButton onClick={onClick}>
@@ -68,7 +66,7 @@ function SampleNextArrow(props) {
   );
 }
 
-function SamplePrevArrow(props) {
+function SamplePrevArrow(props: SampleArrow) {
   const { onClick } = props;
   return (
     <LeftButton onClick={onClick}>
