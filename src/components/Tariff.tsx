@@ -70,6 +70,7 @@ const Tariff = styled.div<TariffComponentProps>`
   border-radius: 10px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
   flex: 1;
+  min-width: 405px;
 `;
 
 const Header = styled.div<TariffComponentProps>`
@@ -134,6 +135,7 @@ const WithoutDiscount = styled.span`
 const Installment = styled.span`
   font-weight: 400;
   font-size: 18px;
+  margin-right: -20px;
 `;
 
 const ListContainer = styled.div`
