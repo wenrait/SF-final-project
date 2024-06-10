@@ -1,5 +1,6 @@
 import { useGetAccountInfoQuery } from '../api/accountInfoApi.ts';
 import styled from 'styled-components';
+import { useAppSelector } from '../hooks.ts';
 
 const Info = styled.div`
   padding: 12px;
@@ -48,7 +49,13 @@ const Limit = styled.span`
 `;
 
 export const AccountInfoComponent = () => {
-  const { data, isLoading, error } = useGetAccountInfoQuery({});
+  const isAuthenticated = useAppSelector(
+    (state) => state.authReducer.isAuthenticated,
+  );
+  const { data, isLoading, error } = useGetAccountInfoQuery(
+    {},
+    { skip: !isAuthenticated },
+  );
 
   if (isLoading) {
     return <Info>Loading...</Info>;
