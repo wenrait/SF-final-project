@@ -32,7 +32,7 @@ const Content = styled.div`
   }
 `;
 
-const Header = styled.section`
+const Top = styled.section`
   display: flex;
   width: 100%;
   justify-content: space-between;
@@ -42,13 +42,13 @@ const Header = styled.section`
   }
 `;
 
-const HeaderLeft = styled.div`
+const Text = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
 `;
 
-const HeaderTitle = styled.h1`
+const Title = styled.h1`
   font-family: Ferry, Arial, sans-serif;
   font-weight: 900;
   font-size: 60px;
@@ -65,7 +65,7 @@ const HeaderTitle = styled.h1`
   }
 `;
 
-const HeaderDescription = styled.p`
+const Description = styled.p`
   font-size: 20px;
   margin: 0 0 50px;
   @media (max-width: 600px) {
@@ -74,7 +74,7 @@ const HeaderDescription = styled.p`
   }
 `;
 
-const HeaderSvg = styled.img`
+const TopSvg = styled.img`
   width: 45%;
   @media (max-width: 960px) {
     width: 100%;
@@ -135,19 +135,19 @@ export const HomePage = () => {
   return (
     <Home>
       <Content>
-        <Header>
-          <HeaderLeft>
-            <HeaderTitle>
+        <Top>
+          <Text>
+            <Title>
               сервис по поиску
               <br /> публикаций
               <br /> о компании
               <br />
               по его ИНН
-            </HeaderTitle>
-            <HeaderDescription>
+            </Title>
+            <Description>
               Комплексный анализ публикаций, получение данных <br /> в формате
               PDF на электронную почту.
-            </HeaderDescription>
+            </Description>
             {isAuthenticated && (
               <>
                 <ButtonDesktop>
@@ -166,9 +166,9 @@ export const HomePage = () => {
                 </ButtonMobile>
               </>
             )}
-          </HeaderLeft>
-          <HeaderSvg src={homeSvg1} alt={''} />
-        </Header>
+          </Text>
+          <TopSvg src={homeSvg1} alt={''} />
+        </Top>
         <Section>
           <Subtitle>Почему именно мы</Subtitle>
           <CarouselComponent />
