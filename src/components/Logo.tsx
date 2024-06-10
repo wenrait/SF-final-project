@@ -1,9 +1,21 @@
-import HeaderLogo from '../assets/svg/logo__header.svg';
-import FooterLogo from '../assets/svg/logo__footer.svg';
+import HeaderLogoLarge from '../assets/svg/logo__header.svg';
+import FooterLogoLarge from '../assets/svg/logo__footer.svg';
+import HeaderLogoSmall from '../assets/svg/logo__header--mobile.svg';
+import FooterLogoSmall from '../assets/svg/logo__footer--mobile.svg';
 import styled from 'styled-components';
 
-const Logo = styled.img`
+const LogoLarge = styled.img`
   display: block;
+  @media (max-width: 601px) {
+    display: none;
+  }
+`;
+
+const LogoSmall = styled.img`
+  display: none;
+  @media (max-width: 600px) {
+    display: block;
+  }
 `;
 
 export interface LogoComponentsProps {
@@ -11,7 +23,13 @@ export interface LogoComponentsProps {
 }
 
 export const LogoComponent = ({ place }: LogoComponentsProps) => {
-  const logo = place === 'header' ? HeaderLogo : FooterLogo;
+  const logoLarge = place === 'header' ? HeaderLogoLarge : FooterLogoLarge;
+  const logoSmall = place === 'header' ? HeaderLogoSmall : FooterLogoSmall;
 
-  return <Logo src={logo} alt={'СКАН'} />;
+  return (
+    <>
+      <LogoLarge src={logoLarge} alt="СКАН" />
+      <LogoSmall src={logoSmall} alt="СКАН" />
+    </>
+  );
 };
