@@ -5,6 +5,7 @@ import { LogoComponent } from '../components/Logo.tsx';
 import authDivider from '../assets/svg/auth__divider.svg';
 import { useAppSelector } from '../hooks.ts';
 import { AccountComponent } from '../components/Account.tsx';
+import { AccountInfoComponent } from '../components/AccountInfo.tsx';
 
 const HeaderWrapper = styled.header`
   width: 100%;
@@ -24,20 +25,42 @@ const HeaderContent = styled.div`
   position: relative;
   font-size: 14px;
   box-sizing: border-box;
+  @media (max-width: 960px) {
+    padding: 0 30px;
+  }
+  @media (max-width: 600px) {
+    padding: 0 14px;
+  }
 `;
 
-const HeaderAside = styled.div`
+const Left = styled.div`
   display: flex;
   flex: 1;
   align-items: center;
   justify-content: space-between;
+  @media (max-width: 600px) {
+    flex: 0;
+  }
 `;
 
-const HeaderCenter = styled.div`
+const Center = styled.div`
   display: flex;
   flex: 1;
   align-items: center;
   justify-content: center;
+  @media (max-width: 960px) {
+    display: none;
+  }
+`;
+
+const Right = styled.div`
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  @media (max-width: 960px) {
+    display: none;
+  }
 `;
 
 const HeaderNav = styled.nav`
@@ -81,6 +104,30 @@ const AuthDivider = styled.img`
   display: block;
 `;
 
+const AccountInfoWrapper = styled.div`
+  display: none;
+  @media (max-width: 960px) {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+  }
+  @media (max-width: 600px) {
+    flex: 0;
+  }
+`;
+
+const Menu = styled.div`
+  display: none;
+  @media (max-width: 960px) {
+    display: flex;
+    flex: 1;
+    justify-content: end;
+  }
+  @media (max-width: 600px) {
+    flex: 0;
+  }
+`;
+
 export const HeaderComponent = () => {
   const isAuthenticated = useAppSelector(
     (state) => state.authReducer.isAuthenticated,
@@ -89,19 +136,19 @@ export const HeaderComponent = () => {
   return (
     <HeaderWrapper>
       <HeaderContent>
-        <HeaderAside>
+        <Left>
           <Link to={'/'}>
             <LogoComponent place={'header'} />
           </Link>
-        </HeaderAside>
-        <HeaderCenter>
+        </Left>
+        <Center>
           <HeaderNav>
             <StyledNavLink to={'/'}>Главная</StyledNavLink>
             <StyledNavLink to={'/'}>Тарифы</StyledNavLink>
             <StyledNavLink to={'/'}>FAQ</StyledNavLink>
           </HeaderNav>
-        </HeaderCenter>
-        <HeaderAside>
+        </Center>
+        <Right>
           {isAuthenticated ? (
             <AccountComponent />
           ) : (
@@ -113,7 +160,11 @@ export const HeaderComponent = () => {
               </Link>
             </AuthButtons>
           )}
-        </HeaderAside>
+        </Right>
+        <AccountInfoWrapper>
+          <AccountInfoComponent />
+        </AccountInfoWrapper>
+        <Menu>Menu</Menu>
       </HeaderContent>
     </HeaderWrapper>
   );
