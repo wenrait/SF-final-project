@@ -53,11 +53,11 @@ const Center = styled.div`
   }
 `;
 
-const Right = styled.div`
+const Right = styled.div<{ $isAuth: boolean }>`
   display: flex;
   flex: 1;
   align-items: center;
-  justify-content: space-between;
+  justify-content: ${(props) => (props.$isAuth ? 'space-between' : 'flex-end')};
   @media (max-width: 960px) {
     display: none;
   }
@@ -148,7 +148,7 @@ export const HeaderComponent = () => {
             <StyledNavLink to={'/'}>FAQ</StyledNavLink>
           </HeaderNav>
         </Center>
-        <Right>
+        <Right $isAuth={isAuthenticated}>
           {isAuthenticated ? (
             <AccountComponent />
           ) : (
