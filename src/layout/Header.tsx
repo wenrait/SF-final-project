@@ -6,17 +6,10 @@ import { useAppSelector } from '../hooks.ts';
 import { AccountComponent } from '../components/Account.tsx';
 import { AccountInfoComponent } from '../components/AccountInfo.tsx';
 
-const HeaderWrapper = styled.header`
+const Header = styled.div`
+  display: flex;
   width: 100%;
   height: 93px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const HeaderContent = styled.div`
-  display: flex;
-  width: 100%;
   max-width: 1440px;
   padding: 0 60px;
   justify-content: space-between;
@@ -135,35 +128,31 @@ export const HeaderComponent = () => {
   const navigate = useNavigate();
 
   return (
-    <HeaderWrapper>
-      <HeaderContent>
-        <Left>
-          <LogoComponent place={'header'} onClick={() => navigate('/')} />
-        </Left>
-        <Center>
-          <HeaderNav>
-            <StyledNavLink to={'/'}>Главная</StyledNavLink>
-            <StyledNavLink to={'/'}>Тарифы</StyledNavLink>
-            <StyledNavLink to={'/'}>FAQ</StyledNavLink>
-          </HeaderNav>
-        </Center>
-        <Right $isAuth={isAuthenticated}>
-          {isAuthenticated ? (
-            <AccountComponent />
-          ) : (
-            <Auth>
-              <RegLink href={'/'}>Зарегистрироваться</RegLink>
-              <LoginButton onClick={() => navigate('/login')}>
-                Войти
-              </LoginButton>
-            </Auth>
-          )}
-        </Right>
-        <AccountInfoWrapper>
-          <AccountInfoComponent />
-        </AccountInfoWrapper>
-        <Menu>Menu</Menu>
-      </HeaderContent>
-    </HeaderWrapper>
+    <Header>
+      <Left>
+        <LogoComponent place={'header'} onClick={() => navigate('/')} />
+      </Left>
+      <Center>
+        <HeaderNav>
+          <StyledNavLink to={'/'}>Главная</StyledNavLink>
+          <StyledNavLink to={'/'}>Тарифы</StyledNavLink>
+          <StyledNavLink to={'/'}>FAQ</StyledNavLink>
+        </HeaderNav>
+      </Center>
+      <Right $isAuth={isAuthenticated}>
+        {isAuthenticated ? (
+          <AccountComponent />
+        ) : (
+          <Auth>
+            <RegLink href={'/'}>Зарегистрироваться</RegLink>
+            <LoginButton onClick={() => navigate('/login')}>Войти</LoginButton>
+          </Auth>
+        )}
+      </Right>
+      <AccountInfoWrapper>
+        <AccountInfoComponent />
+      </AccountInfoWrapper>
+      <Menu>Menu</Menu>
+    </Header>
   );
 };

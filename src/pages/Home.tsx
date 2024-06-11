@@ -7,13 +7,6 @@ import { CarouselComponent } from '../components/Carousel.tsx';
 import { useAppSelector } from '../hooks.ts';
 
 const Home = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const Content = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -134,55 +127,53 @@ export const HomePage = () => {
 
   return (
     <Home>
-      <Content>
-        <Top>
-          <Text>
-            <Title>
-              сервис по поиску
-              <br /> публикаций
-              <br /> о компании
-              <br />
-              по его ИНН
-            </Title>
-            <Description>
-              Комплексный анализ публикаций, получение данных <br /> в формате
-              PDF на электронную почту.
-            </Description>
-            {isAuthenticated && (
-              <>
-                <ButtonDesktop>
-                  <ButtonComponent
-                    font={'medium'}
-                    width={'fit-content'}
-                    text={'Запросить данные'}
-                  />
-                </ButtonDesktop>
-                <ButtonMobile>
-                  <ButtonComponent
-                    font={'small'}
-                    width={'100%'}
-                    text={'Запросить данные'}
-                  />
-                </ButtonMobile>
-              </>
-            )}
-          </Text>
-          <TopSvg src={homeSvg1} alt={''} />
-        </Top>
-        <Section>
-          <Subtitle>Почему именно мы</Subtitle>
-          <CarouselComponent />
-          <img src={homeSvg2} alt={''} />
-        </Section>
-        <Section>
-          <Subtitle>Наши тарифы</Subtitle>
-          <Tariffs>
-            <TariffComponent type={'beginner'} />
-            <TariffComponent type={'pro'} />
-            <TariffComponent type={'business'} />
-          </Tariffs>
-        </Section>
-      </Content>
+      <Top>
+        <Text>
+          <Title>
+            сервис по поиску
+            <br /> публикаций
+            <br /> о компании
+            <br />
+            по его ИНН
+          </Title>
+          <Description>
+            Комплексный анализ публикаций, получение данных <br /> в формате PDF
+            на электронную почту.
+          </Description>
+          {isAuthenticated && (
+            <>
+              <ButtonDesktop>
+                <ButtonComponent
+                  font={'medium'}
+                  width={'fit-content'}
+                  text={'Запросить данные'}
+                />
+              </ButtonDesktop>
+              <ButtonMobile>
+                <ButtonComponent
+                  font={'small'}
+                  width={'100%'}
+                  text={'Запросить данные'}
+                />
+              </ButtonMobile>
+            </>
+          )}
+        </Text>
+        <TopSvg src={homeSvg1} alt={''} />
+      </Top>
+      <Section>
+        <Subtitle>Почему именно мы</Subtitle>
+        <CarouselComponent />
+        <img src={homeSvg2} alt={''} />
+      </Section>
+      <Section>
+        <Subtitle>Наши тарифы</Subtitle>
+        <Tariffs>
+          <TariffComponent type={'beginner'} />
+          <TariffComponent type={'pro'} />
+          <TariffComponent type={'business'} />
+        </Tariffs>
+      </Section>
     </Home>
   );
 };
