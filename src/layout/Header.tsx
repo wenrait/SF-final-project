@@ -98,6 +98,10 @@ const LoginButton = styled.button`
   padding: 5px 10px;
   font-weight: 500;
   font-size: 14px;
+  transition: 500ms;
+  &:hover {
+    background: ${colors.secondary.lightTealHover};
+  }
 `;
 
 const AccountInfoWrapper = styled.div`
