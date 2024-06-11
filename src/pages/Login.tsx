@@ -6,11 +6,18 @@ const Login = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 60px;
+  padding: 60px;
   gap: 25px;
   max-width: 1440px;
   flex: 1;
   box-sizing: border-box;
+  @media (max-width: 960px) {
+    flex-direction: column;
+    padding: 30px;
+  }
+  @media (max-width: 600px) {
+    padding: 14px;
+  }
 `;
 
 const Content = styled.div`
@@ -18,6 +25,9 @@ const Content = styled.div`
   flex-direction: column;
   max-width: 60%;
   gap: 14px;
+  @media (max-width: 960px) {
+    max-width: 100%;
+  }
 `;
 
 const Key = styled.img`
@@ -33,6 +43,14 @@ const Title = styled.h1`
   line-height: 48px;
   letter-spacing: 0.02em;
   text-align: left;
+  @media (max-width: 960px) {
+    line-height: 36px;
+    font-size: 30px;
+  }
+  @media (max-width: 600px) {
+    font-size: 22px;
+    line-height: 26px;
+  }
 `;
 
 export const LoginPage = () => {
