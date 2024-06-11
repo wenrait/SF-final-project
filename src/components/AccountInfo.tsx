@@ -1,6 +1,7 @@
 import { useGetAccountInfoQuery } from '../api/accountInfoApi.ts';
 import styled from 'styled-components';
 import { useAppSelector } from '../hooks.ts';
+import { handleRTKQueryError } from '../redux/handleError.ts';
 
 const Info = styled.div`
   padding: 12px;
@@ -63,9 +64,8 @@ export const AccountInfoComponent = () => {
 
   if (error) {
     if ('status' in error) {
-      const errorMsg =
-        'error' in error ? error.error : JSON.stringify(error.data);
-      return <Info>{errorMsg}</Info>;
+      const message = handleRTKQueryError(error);
+      return <Info>{message}</Info>;
     }
   }
 
