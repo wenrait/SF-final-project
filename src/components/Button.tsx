@@ -30,6 +30,11 @@ const Button = styled.button<{
     cursor: default;
   }
 
+  @media (max-width: 600px) {
+    font-size: 20px;
+    width: 100%;
+  }
+
   &:hover:not(:disabled) {
     background: ${colors.secondary.blueHover};
   }
