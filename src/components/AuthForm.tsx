@@ -23,6 +23,11 @@ const Form = styled.form`
   position: relative;
   max-width: 40%;
   flex: 1;
+  box-sizing: border-box;
+  @media (max-width: 960px) {
+    max-width: 100%;
+    width: 100%;
+  }
 `;
 
 const Lock = styled.img`
@@ -215,7 +220,7 @@ export const AuthFormComponent = () => {
         {isError && <ErrorMessage>{errorMessage}</ErrorMessage>}
         <ButtonComponent
           text={'Войти'}
-          font={'small'}
+          font={'medium'}
           width={'100%'}
           type={'submit'}
           disabled={isLoading || !(login.length > 0 && password.length > 0)}
