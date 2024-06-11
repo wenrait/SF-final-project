@@ -11,17 +11,17 @@ const Home = styled.div`
   flex-direction: column;
   width: 100%;
   max-width: 1440px;
-  padding: 0 60px;
+  padding: 60px;
   justify-content: center;
   align-items: center;
   position: relative;
   gap: 100px;
   box-sizing: border-box;
   @media (max-width: 960px) {
-    padding: 0 30px;
+    padding: 30px;
   }
   @media (max-width: 600px) {
-    padding: 0 14px;
+    padding: 14px;
   }
 `;
 
@@ -39,6 +39,9 @@ const Text = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  @media (max-width: 960px) {
+    width: 100%;
+  }
 `;
 
 const Title = styled.h1`
@@ -74,20 +77,6 @@ const TopSvg = styled.img`
   }
 `;
 
-const ButtonDesktop = styled.div`
-  display: block;
-  @media (max-width: 601px) {
-    display: none;
-  }
-`;
-
-const ButtonMobile = styled.div`
-  display: none;
-  @media (max-width: 600px) {
-    display: block;
-  }
-`;
-
 const Section = styled.section`
   width: 100%;
   display: flex;
@@ -113,11 +102,7 @@ const Subtitle = styled.h2`
 const Tariffs = styled.div`
   display: flex;
   gap: 30px;
-  margin-bottom: 100px;
   flex-wrap: wrap;
-  @media (max-width: 600px) {
-    margin-bottom: 40px;
-  }
 `;
 
 export const HomePage = () => {
@@ -141,22 +126,11 @@ export const HomePage = () => {
             на электронную почту.
           </Description>
           {isAuthenticated && (
-            <>
-              <ButtonDesktop>
-                <ButtonComponent
-                  font={'medium'}
-                  width={'fit-content'}
-                  text={'Запросить данные'}
-                />
-              </ButtonDesktop>
-              <ButtonMobile>
-                <ButtonComponent
-                  font={'small'}
-                  width={'100%'}
-                  text={'Запросить данные'}
-                />
-              </ButtonMobile>
-            </>
+            <ButtonComponent
+              font={'medium'}
+              width={'fit-content'}
+              text={'Запросить данные'}
+            />
           )}
         </Text>
         <TopSvg src={homeSvg1} alt={''} />
