@@ -30,9 +30,20 @@ const Content = styled.div`
   }
 `;
 
-const Key = styled.img`
+const KeyDesktop = styled.img`
   display: block;
   width: fit-content;
+  @media (max-width: 960px) {
+    display: none;
+  }
+`;
+
+const KeyMobile = styled.img`
+  display: none;
+  @media (max-width: 960px) {
+    display: block;
+    width: 100%;
+  }
 `;
 
 const Title = styled.h1`
@@ -61,9 +72,10 @@ export const LoginPage = () => {
           Для оформления подписки на тариф, необходимо <br />
           авторизоваться.
         </Title>
-        <Key src={keySvg} alt={'Key'} />
+        <KeyDesktop src={keySvg} alt={'Key'} />
       </Content>
       <AuthFormComponent />
+      <KeyMobile src={keySvg} alt={'Key'} />
     </Login>
   );
 };
