@@ -31,7 +31,7 @@ const Button = styled.button<{
   }
 
   &:hover:not(:disabled) {
-    background: rgb(64, 77, 204)
+    background: ${colors.secondary.blueHover};
   }
 `;
 
