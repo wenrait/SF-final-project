@@ -23,10 +23,15 @@ const Button = styled.button<{
   border: 0;
   border-radius: 5px;
   padding: 16px 64px;
+  transition: 500ms;
 
   &:disabled {
     opacity: 50%;
     cursor: default;
+  }
+
+  &:hover:not(:disabled) {
+    background: rgb(64, 77, 204)
   }
 `;
 

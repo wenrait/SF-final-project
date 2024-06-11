@@ -1,15 +1,98 @@
 import { FormEvent, useState } from 'react';
-import { usePostAuthDataMutation } from '../api/login-api.ts';
+import { usePostAuthDataMutation } from '../api/accountLoginApi.ts';
 import { setAuthData } from '../redux/authSlice.ts';
 import { ButtonComponent } from '../components/Button.tsx';
 import { useAppDispatch } from '../hooks.ts';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import KeySvg from '../assets/svg/LoginPage__1.svg';
+import { colors } from '../styles/globalStyles.ts';
+// import LockSvg from '../assets/svg/LoginPage__2.svg';
 
-const LoginWrapper = styled.div`
+const Login = styled.div`
   display: flex;
+  padding: 0 60px;
   flex: 1;
 `;
+
+const Left = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Key = styled.img`
+  display: block;
+  width: fit-content;
+`;
+
+const Title = styled.h2`
+  font-family: Ferry, Arial, sans-serif;
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 48px;
+  letter-spacing: 0.02em;
+  text-align: left;
+`;
+
+const Right = styled.div``;
+
+const Form = styled.form`
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(199, 199, 199, 1);
+  border-radius: 10px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+`;
+
+const AuthButtons = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 15px;
+`;
+
+const AuthButton = styled.button`
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: ${colors.primary.teal};
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid ${colors.primary.teal};
+  padding: 8px 50px;
+  font-size: 16px;
+
+  &:disabled {
+    color: rgba(199, 199, 199, 1);
+    border-bottom: 2px solid rgba(199, 199, 199, 1);
+  }
+`;
+
+const Field = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+`;
+
+const Label = styled.label`
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+  letter-spacing: 0.02em;
+  color: rgba(148, 148, 148, 1);
+`;
+
+const Input = styled.input`
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19.36px;
+  letter-spacing: 0.02em;
+  border: 1px solid rgba(199, 199, 199, 1);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.05);
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  border-radius: 5px;
+  padding: 12px 19px;
+`;
+
 
 export const LoginPage = () => {
   const [login, setLogin] = useState('');
@@ -43,29 +126,47 @@ export const LoginPage = () => {
   };
 
   return (
-    <LoginWrapper>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor={'login'}>Login</label>
-        <input
-          name={'login'}
-          type={'text'}
-          onChange={(e) => setLogin(e.target.value)}
-        />
-        <label htmlFor={'password'}>Password</label>
-        <input
-          name={'password'}
-          type={'password'}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <ButtonComponent
-          text={'Войти'}
-          font={'small'}
-          width={'fit-content'}
-          type={'submit'}
-          disabled={isLoading}
-        />
-        <div>{log}</div>
-      </form>
-    </LoginWrapper>
+    <Login>
+      <Left>
+        <Title>
+          Для оформления подписки <br />
+          на тариф, необходимо <br />
+          авторизоваться.
+        </Title>
+        <Key src={KeySvg} alt={'Key'} />
+      </Left>
+      <Right>
+        <Form onSubmit={handleSubmit}>
+          <AuthButtons>
+            <AuthButton>Войти</AuthButton>
+            <AuthButton disabled>Зарегистрироваться</AuthButton>
+          </AuthButtons>
+          <Field>
+            <Label htmlFor={'login'}>Логин или номер телефона:</Label>
+            <Input
+              name={'login'}
+              type={'text'}
+              onChange={(e) => setLogin(e.target.value)}
+            />
+          </Field>
+          <Field>
+            <Label htmlFor={'password'}>Пароль:</Label>
+            <Input
+              name={'password'}
+              type={'password'}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Field>
+          <ButtonComponent
+            text={'Войти'}
+            font={'small'}
+            width={'100%'}
+            type={'submit'}
+            disabled={isLoading || !(login.length > 0 && password.length > 0)}
+          />
+          <div>{log}</div>
+        </Form>
+      </Right>
+    </Login>
   );
 };
