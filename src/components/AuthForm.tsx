@@ -172,8 +172,8 @@ export const AuthFormComponent = () => {
         setIsError(true);
         setErrorMessage(message);
       } else {
-        dispatch(setAuthData({ ...data, isAuthenticated: true }));
         navigate('/');
+        dispatch(setAuthData({ ...data, isAuthenticated: true }));
       }
     } catch (e) {
       if (e instanceof Error) {
