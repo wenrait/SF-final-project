@@ -94,13 +94,19 @@ const Label = styled.label`
   color: rgba(148, 148, 148, 1);
 `;
 
-const Input = styled.input`
+const Input = styled.input<{ $isError: boolean }>`
   font-size: 16px;
   font-weight: 400;
   line-height: 19.36px;
   letter-spacing: 0.02em;
-  border: 1px solid rgba(199, 199, 199, 1);
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.05);
+  border: 1px solid
+    ${(props) =>
+      props.$isError ? 'rgba(255, 89, 89, 1)' : 'rgba(199, 199, 199, 1)'};
+  box-shadow: ${(props) =>
+    props.$isError
+      ? '0 0 10px 0 rgba(255, 89, 89, 0.2)'
+      : '0 0 20px 0 rgba(0, 0, 0, 0.05)'};
+
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   border-radius: 5px;
   padding: 12px 19px;
