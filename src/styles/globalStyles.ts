@@ -10,7 +10,7 @@ export const colors = {
   secondary: {
     orange: 'rgba(255, 182, 79, 1)',
     lightTeal: 'rgba(124, 227, 225, 1)',
-    lightTealHover: 'rgb(91,166,164)',
+    lightTealHover: 'rgb(113,204,202)',
     blue: 'rgba(89, 112, 255, 1)',
     blueHover: 'rgb(67,84,190)',
   },
