@@ -193,6 +193,16 @@ export const LoginPage = () => {
     }
   };
 
+  const handleLoginChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setIsError(false);
+    setLogin(e.target.value);
+  };
+
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setIsError(false);
+    setPassword(e.target.value);
+  };
+
   return (
     <Login>
       <Left>
@@ -217,7 +227,7 @@ export const LoginPage = () => {
               id={'input-login'}
               name={'login'}
               type={'text'}
-              onChange={(e) => setLogin(e.target.value)}
+              onChange={(e) => handleLoginChange(e)}
             />
           </Field>
           <Field>
@@ -227,7 +237,7 @@ export const LoginPage = () => {
               id={'input-password'}
               name={'password'}
               type={'password'}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => handlePasswordChange(e)}
             />
           </Field>
           <Auth>
