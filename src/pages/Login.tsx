@@ -184,24 +184,22 @@ export const LoginPage = () => {
   const [postAuthData, { isLoading }] = usePostAuthDataMutation();
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (login.length > 0 && password.length > 0) {
-      try {
-        const { data, error } = await postAuthData({ login, password });
-        if (error) {
-          if ('status' in error) {
-            const errorMsg =
-              'error' in error ? error.error : JSON.stringify(error.data);
-            setLog(errorMsg);
-          }
-        } else {
-          dispatch(setAuthData({ ...data, isAuthenticated: true }));
-          navigate('/');
-        }
-      } catch (e) {
-        setLog((e as Error).message);
+    try {
+      const { data, error } = await postAuthData({ login, password });
+      if (error) {
+        const message = handleRTKQueryError(error);
+        setIsError(true);
+        setErrorMessage(message);
+      } else {
+        dispatch(setAuthData({ ...data, isAuthenticated: true }));
+        navigate('/');
       }
-    } else {
-      setLog(`Одно из полей не заполнено`);
+    } catch (e) {
+      if (e instanceof Error) {
+        setErrorMessage(e.message);
+      } else {
+        setErrorMessage('Произошла неизвестная ошибка');
+      }
     }
   };
 
