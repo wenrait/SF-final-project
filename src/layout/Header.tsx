@@ -149,9 +149,11 @@ export const HeaderComponent = () => {
           </Auth>
         )}
       </Right>
-      <AccountInfoWrapper>
-        <AccountInfoComponent />
-      </AccountInfoWrapper>
+      {isAuthenticated && (
+        <AccountInfoWrapper>
+          <AccountInfoComponent />
+        </AccountInfoWrapper>
+      )}
       <Menu>Menu</Menu>
     </Header>
   );
