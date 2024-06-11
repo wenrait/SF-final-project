@@ -176,7 +176,8 @@ const ErrorMessage = styled.span`
 export const LoginPage = () => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
-  const [log, setLog] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isError, setIsError] = useState(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
