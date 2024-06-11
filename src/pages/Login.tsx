@@ -1,13 +1,17 @@
-import { FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { usePostAuthDataMutation } from '../api/accountLoginApi.ts';
 import { setAuthData } from '../redux/authSlice.ts';
 import { ButtonComponent } from '../components/Button.tsx';
 import { useAppDispatch } from '../hooks.ts';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import KeySvg from '../assets/svg/LoginPage__1.svg';
+import keySvg from '../assets/svg/LoginPage__1.svg';
 import { colors } from '../styles/globalStyles.ts';
-// import LockSvg from '../assets/svg/LoginPage__2.svg';
+import lockSvg from '../assets/svg/LoginPage__2.svg';
+import google from '../assets/svg/LoginPage__Google.svg';
+import facebook from '../assets/svg/LoginPage__Facebook.svg';
+import yandex from '../assets/svg/LoginPage__Yandex.svg';
+import { handleRTKQueryError } from '../redux/handleError.ts';
 
 const Login = styled.div`
   display: flex;
