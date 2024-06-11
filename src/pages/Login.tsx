@@ -1,31 +1,23 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
-import { usePostAuthDataMutation } from '../api/accountLoginApi.ts';
-import { setAuthData } from '../redux/authSlice.ts';
-import { ButtonComponent } from '../components/Button.tsx';
-import { useAppDispatch } from '../hooks.ts';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 import keySvg from '../assets/svg/LoginPage__1.svg';
-import { colors } from '../styles/globalStyles.ts';
-import lockSvg from '../assets/svg/LoginPage__2.svg';
-import google from '../assets/svg/LoginPage__Google.svg';
-import facebook from '../assets/svg/LoginPage__Facebook.svg';
-import yandex from '../assets/svg/LoginPage__Yandex.svg';
-import { handleRTKQueryError } from '../redux/handleError.ts';
+import { AuthFormComponent } from '../components/AuthForm.tsx';
 
 const Login = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 60px;
+  gap: 25px;
   max-width: 1440px;
   flex: 1;
   box-sizing: border-box;
 `;
 
-const Left = styled.div`
+const Content = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: 60%;
+  gap: 14px;
 `;
 
 const Key = styled.img`
@@ -43,234 +35,17 @@ const Title = styled.h1`
   text-align: left;
 `;
 
-const Right = styled.div``;
-
-const Form = styled.form`
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(199, 199, 199, 1);
-  border-radius: 10px;
-  padding: 25px;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  position: relative;
-`;
-
-const Lock = styled.img`
-  position: absolute;
-  top: -50px;
-  left: -50px;
-  display: block;
-`;
-
-const AuthModeButtons = styled.div`
-  width: 100%;
-  display: flex;
-  gap: 15px;
-`;
-
-const AuthModeButton = styled.button`
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  color: ${colors.primary.teal};
-  background: transparent;
-  border: 0;
-  border-bottom: 2px solid ${colors.primary.teal};
-  padding: 8px 50px;
-  font-size: 16px;
-
-  &:disabled {
-    color: rgba(199, 199, 199, 1);
-    border-bottom: 2px solid rgba(199, 199, 199, 1);
-  }
-`;
-
-const Field = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-`;
-
-const Label = styled.label`
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 19.36px;
-  letter-spacing: 0.02em;
-  color: rgba(148, 148, 148, 1);
-`;
-
-const Input = styled.input<{ $isError: boolean }>`
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 19.36px;
-  letter-spacing: 0.02em;
-  border: 1px solid
-    ${(props) =>
-      props.$isError ? 'rgba(255, 89, 89, 1)' : 'rgba(199, 199, 199, 1)'};
-  box-shadow: ${(props) =>
-    props.$isError
-      ? '0 0 10px 0 rgba(255, 89, 89, 0.2)'
-      : '0 0 20px 0 rgba(0, 0, 0, 0.05)'};
-
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  border-radius: 5px;
-  padding: 12px 19px;
-`;
-
-const Auth = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  position: relative;
-`;
-
-const RecoveryLink = styled.a`
-  color: ${colors.secondary.blue};
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 16.94px;
-  letter-spacing: 0.02em;
-  text-align: center;
-  text-decoration: underline;
-`;
-
-const ExternalAuth = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-`;
-
-const ExternalAuthButtons = styled.div`
-  display: flex;
-  gap: 10px;
-`;
-
-const Text = styled.span`
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 19.36px;
-  letter-spacing: 0.02em;
-  color: rgba(148, 148, 148, 1);
-`;
-
-const ErrorMessage = styled.span`
-  width: 100%;
-  text-align: center;
-  color: rgba(255, 89, 89, 1);
-  font-size: 14px;
-  line-height: 16.94px;
-  letter-spacing: 0.01em;
-  position: absolute;
-  top: -25px;
-`;
-
-// const LoginViaButton = styled.button`
-//   background: transparent;
-//   display: flex;
-//   place-items: center;
-//   width: 96px;
-//   height: 31px;
-//   border-radius: 3px;
-//   border: 1px solid rgba(89, 112, 255, 0.51);
-// `;
-
 export const LoginPage = () => {
-  const [login, setLogin] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const [isError, setIsError] = useState(false);
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-
-  const [postAuthData, { isLoading }] = usePostAuthDataMutation();
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try {
-      const { data, error } = await postAuthData({ login, password });
-      if (error) {
-        const message = handleRTKQueryError(error);
-        setIsError(true);
-        setErrorMessage(message);
-      } else {
-        dispatch(setAuthData({ ...data, isAuthenticated: true }));
-        navigate('/');
-      }
-    } catch (e) {
-      if (e instanceof Error) {
-        setErrorMessage(e.message);
-      } else {
-        setErrorMessage('Произошла неизвестная ошибка');
-      }
-    }
-  };
-
-  const handleLoginChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setIsError(false);
-    setLogin(e.target.value);
-  };
-
-  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setIsError(false);
-    setPassword(e.target.value);
-  };
-
   return (
     <Login>
-      <Left>
+      <Content>
         <Title>
-          Для оформления подписки <br />
-          на тариф, необходимо <br />
+          Для оформления подписки на тариф, необходимо <br />
           авторизоваться.
         </Title>
         <Key src={keySvg} alt={'Key'} />
-      </Left>
-      <Right>
-        <Form onSubmit={handleSubmit}>
-          <Lock src={lockSvg} />
-          <AuthModeButtons>
-            <AuthModeButton>Войти</AuthModeButton>
-            <AuthModeButton disabled>Зарегистрироваться</AuthModeButton>
-          </AuthModeButtons>
-          <Field>
-            <Label htmlFor={'login'}>Логин или номер телефона:</Label>
-            <Input
-              $isError={isError}
-              id={'input-login'}
-              name={'login'}
-              type={'text'}
-              onChange={(e) => handleLoginChange(e)}
-            />
-          </Field>
-          <Field>
-            <Label htmlFor={'input-password'}>Пароль:</Label>
-            <Input
-              $isError={isError}
-              id={'input-password'}
-              name={'password'}
-              type={'password'}
-              onChange={(e) => handlePasswordChange(e)}
-            />
-          </Field>
-          <Auth>
-            {isError && <ErrorMessage>{errorMessage}</ErrorMessage>}
-            <ButtonComponent
-              text={'Войти'}
-              font={'small'}
-              width={'100%'}
-              type={'submit'}
-              disabled={isLoading || !(login.length > 0 && password.length > 0)}
-            />
-            <RecoveryLink>Восстановить пароль</RecoveryLink>
-          </Auth>
-          <ExternalAuth>
-            <Text>Войти через:</Text>
-            <ExternalAuthButtons>
-              <img src={google} alt={'Google'} />
-              <img src={facebook} alt={'Facebook'} />
-              <img src={yandex} alt={'Яндекс'} />
-            </ExternalAuthButtons>
-          </ExternalAuth>
-        </Form>
-      </Right>
+      </Content>
+      <AuthFormComponent />
     </Login>
   );
 };
