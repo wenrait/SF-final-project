@@ -27,6 +27,7 @@ const Form = styled.form`
   @media (max-width: 960px) {
     max-width: 100%;
     width: 100%;
+    margin-top: 60px;
   }
 `;
 
@@ -35,6 +36,10 @@ const Lock = styled.img`
   top: -50px;
   left: -50px;
   display: block;
+  @media (max-width: 960px) {
+    top: -70px;
+    left: 100px;
+  }
 `;
 
 const AuthModeButtons = styled.div`
