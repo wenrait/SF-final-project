@@ -1,15 +1,7 @@
+import avatar from '../../assets/svg/avatar.svg';
+import { setAuthData } from '../../redux/authSlice.ts';
+import { useAppDispatch } from '../../hooks.ts';
 import styled from 'styled-components';
-import avatar from '../assets/svg/avatar.svg';
-import { setAuthData } from '../redux/authSlice.ts';
-import { useAppDispatch } from '../hooks.ts';
-import { AccountInfoComponent } from './AccountInfo.tsx';
-
-const Account = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
 
 const User = styled.div`
   display: flex;
@@ -45,7 +37,7 @@ const Avatar = styled.img`
   display: block;
 `;
 
-export const AccountComponent = () => {
+export const AccountUserComponent = () => {
   const dispatch = useAppDispatch();
   const handleClick = () => {
     try {
@@ -62,15 +54,12 @@ export const AccountComponent = () => {
   };
 
   return (
-    <Account>
-      <AccountInfoComponent />
-      <User>
-        <Content>
-          <Username>Алексей А.</Username>
-          <Button onClick={handleClick}>Выйти</Button>
-        </Content>
-        <Avatar src={avatar} alt={'Алексей А.'} />
-      </User>
-    </Account>
+    <User>
+      <Content>
+        <Username>Алексей А.</Username>
+        <Button onClick={handleClick}>Выйти</Button>
+      </Content>
+      <Avatar src={avatar} alt={'Алексей А.'} />
+    </User>
   );
 };
