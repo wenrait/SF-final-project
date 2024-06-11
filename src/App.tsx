@@ -7,10 +7,11 @@ import { useAppSelector } from './hooks.ts';
 import styled from 'styled-components';
 import { colors } from './styles/globalStyles.ts';
 
-const AppWrapper = styled.body`
+const AppWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 100vh;
 `;
 
 const HeaderWrapper = styled.header`
