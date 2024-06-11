@@ -29,7 +29,8 @@ const Key = styled.img`
   width: fit-content;
 `;
 
-const Title = styled.h2`
+const Title = styled.h1`
+  margin: 0;
   font-family: Ferry, Arial, sans-serif;
   font-size: 40px;
   font-weight: 900;
@@ -58,13 +59,13 @@ const Lock = styled.img`
   display: block;
 `;
 
-const AuthButtons = styled.div`
+const AuthModeButtons = styled.div`
   width: 100%;
   display: flex;
   gap: 15px;
 `;
 
-const AuthButton = styled.button`
+const AuthModeButton = styled.button`
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   color: ${colors.primary.teal};
   background: transparent;
@@ -231,7 +232,7 @@ export const LoginPage = () => {
             />
           </Field>
           <Field>
-            <Label htmlFor={'password'}>Пароль:</Label>
+            <Label htmlFor={'input-password'}>Пароль:</Label>
             <Input
               $isError={isError}
               id={'input-password'}
