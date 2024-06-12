@@ -25,8 +25,8 @@ const Header = styled.div`
   }
 `;
 
-const Left = styled.div`
-  display: flex;
+const LogoWrapper = styled.div`
+  display: block;
   flex: 1;
   align-items: center;
   justify-content: space-between;
@@ -35,7 +35,7 @@ const Left = styled.div`
   }
 `;
 
-const Center = styled.div`
+const NavWrapper = styled.div`
   display: flex;
   flex: 1;
   align-items: center;
@@ -45,23 +45,20 @@ const Center = styled.div`
   }
 `;
 
-const Right = styled.div<{ $isAuth: boolean }>`
+const AccountWrapper = styled.div`
   display: flex;
   flex: 1;
   align-items: center;
-  justify-content: ${(props) => (props.$isAuth ? 'space-between' : 'flex-end')};
-  @media (max-width: 960px) {
-    display: none;
-  }
+  justify-content: space-between;
 `;
 
-const HeaderNav = styled.nav`
+const Nav = styled.nav`
   align-items: center;
   display: flex;
   gap: 50px;
 `;
 
-const StyledNavLink = styled(NavLink)`
+const Link = styled(NavLink)`
   font-size: 14px;
   text-decoration: none;
   color: ${colors.primary.black};
@@ -129,18 +126,18 @@ export const HeaderComponent = () => {
 
   return (
     <Header>
-      <Left>
-        <LogoComponent place={'header'} onClick={() => navigate('/')} />
-      </Left>
-      <Center>
-        <HeaderNav>
-          <StyledNavLink to={'/'}>Главная</StyledNavLink>
-          <StyledNavLink to={'/'}>Тарифы</StyledNavLink>
-          <StyledNavLink to={'/'}>FAQ</StyledNavLink>
-        </HeaderNav>
-      </Center>
-      <Right $isAuth={isAuthenticated}>
-        {isAuthenticated ? (
+      <LogoWrapper>
+        <LogoComponent type={'colored'} />
+      </LogoWrapper>
+      <NavWrapper>
+        <Nav>
+          <Link to={'/'}>Главная</Link>
+          <Link to={'/'}>Тарифы</Link>
+          <Link to={'/'}>FAQ</Link>
+        </Nav>
+      </NavWrapper>
+      {isAuthenticated ? (
+        <AccountWrapper>
           <AccountComponent />
         ) : (
           <Auth>
