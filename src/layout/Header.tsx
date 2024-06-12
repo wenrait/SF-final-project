@@ -76,7 +76,7 @@ const AuthWrapper = styled.div`
   }
 `;
 
-const RegLink = styled.a`
+const RegLink = styled(NavLink)`
   text-decoration: none;
   color: rgba(0, 0, 0, 0.4);
   padding: 0 18px;
@@ -144,7 +144,7 @@ export const HeaderComponent = () => {
         </AccountWrapper>
       ) : (
         <AuthWrapper>
-          <RegLink href={'/'}>Зарегистрироваться</RegLink>
+          <RegLink to={'/'}>Зарегистрироваться</RegLink>
           <LoginButton onClick={() => navigate('/login')}>Войти</LoginButton>
         </AuthWrapper>
       )}
