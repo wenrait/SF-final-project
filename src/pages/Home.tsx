@@ -143,9 +143,9 @@ export const HomePage = () => {
       <Section>
         <Subtitle>Наши тарифы</Subtitle>
         <Tariffs>
-          <TariffComponent type={'beginner'} />
-          <TariffComponent type={'pro'} />
-          <TariffComponent type={'business'} />
+          <TariffComponent tariff={'beginner'} />
+          <TariffComponent tariff={'pro'} />
+          <TariffComponent tariff={'business'} />
         </Tariffs>
       </Section>
     </Home>
