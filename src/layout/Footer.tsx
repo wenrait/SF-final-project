@@ -40,7 +40,7 @@ export const FooterComponent = () => {
   return (
     <Footer>
       <LogoWrapper>
-        <LogoComponent place={'footer'} />
+        <LogoComponent type={'white'} />
       </LogoWrapper>
       <Contacts>
         <Text>
