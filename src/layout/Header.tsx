@@ -3,8 +3,10 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { colors } from '../styles/globalStyles.ts';
 import { LogoComponent } from '../components/Logo.tsx';
 import { useAppSelector } from '../hooks.ts';
-import { AccountComponent } from '../components/Account.tsx';
-import { AccountInfoComponent } from '../components/AccountInfo.tsx';
+import { AccountComponent } from '../components/Account/Account.tsx';
+import Hamburger from 'hamburger-react';
+import { useState } from 'react';
+import { MenuComponent } from '../components/Menu.tsx';
 
 const Header = styled.div`
   display: flex;
@@ -63,11 +65,15 @@ const Link = styled(NavLink)`
   color: ${colors.primary.black};
 `;
 
-const Auth = styled.div`
+const AuthWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   gap: 20px;
+  flex: 1;
+  @media (max-width: 960px) {
+    display: none;
+  }
 `;
 
 const RegLink = styled.a`
@@ -93,20 +99,15 @@ const LoginButton = styled.button`
   }
 `;
 
-const AccountInfoWrapper = styled.div`
+const HamburgerWrapper = styled.div`
   display: none;
-  @media (max-width: 960px) {
-    display: flex;
-    flex: 1;
-    justify-content: center;
+  z-index: 11;
+  background: transparent;
+  > div {
+    > div {
+      height: 5px !important;
+    }
   }
-  @media (max-width: 600px) {
-    flex: 0;
-  }
-`;
-
-const Menu = styled.div`
-  display: none;
   @media (max-width: 960px) {
     display: flex;
     flex: 1;
@@ -122,6 +123,7 @@ export const HeaderComponent = () => {
     (state) => state.authReducer.isAuthenticated,
   );
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <Header>
@@ -138,19 +140,26 @@ export const HeaderComponent = () => {
       {isAuthenticated ? (
         <AccountWrapper>
           <AccountComponent />
-        ) : (
-          <Auth>
-            <RegLink href={'/'}>Зарегистрироваться</RegLink>
-            <LoginButton onClick={() => navigate('/login')}>Войти</LoginButton>
-          </Auth>
-        )}
-      </Right>
-      {isAuthenticated && (
-        <AccountInfoWrapper>
-          <AccountInfoComponent />
-        </AccountInfoWrapper>
+        </AccountWrapper>
+      ) : (
+        <AuthWrapper>
+          <RegLink href={'/'}>Зарегистрироваться</RegLink>
+          <LoginButton onClick={() => navigate('/login')}>Войти</LoginButton>
+        </AuthWrapper>
       )}
-      <Menu>Menu</Menu>
+      <HamburgerWrapper>
+        <Hamburger
+          size={30}
+          duration={0.3}
+          direction={'right'}
+          distance={'sm'}
+          color={isOpen ? 'white' : colors.primary.teal}
+          easing={'ease-out'}
+          toggled={isOpen}
+          toggle={setIsOpen}
+        />
+      </HamburgerWrapper>
+      <MenuComponent isOpen={isOpen} setIsOpen={setIsOpen} />
     </Header>
   );
 };
