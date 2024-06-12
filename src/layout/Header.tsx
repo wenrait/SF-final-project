@@ -3,10 +3,11 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { colors } from '../styles/globalStyles.ts';
 import { LogoComponent } from '../components/Logo.tsx';
 import { useAppSelector } from '../hooks.ts';
-import { AccountComponent } from '../components/Account/Account.tsx';
 import Hamburger from 'hamburger-react';
 import { useContext } from 'react';
 import { AppContext } from '../App.tsx';
+import { AccountInfoComponent } from '../components/Account/AccountInfo.tsx';
+import { AccountUserComponent } from '../components/Account/AccountUser.tsx';
 
 const Header = styled.div`
   display: flex;
@@ -119,6 +120,27 @@ const HamburgerWrapper = styled.div`
   }
 `;
 
+const InfoWrapper = styled.div`
+  position: absolute;
+  left: 65%;
+  @media (max-width: 960px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    left: 0;
+    width: 100%;
+  }
+`;
+
+const UserWrapper = styled.div`
+  position: absolute;
+  right: 60px;
+  @media (max-width: 960px) {
+    display: none;
+  }
+`;
+
 export const HeaderComponent = () => {
   const isAuthenticated = useAppSelector(
     (state) => state.authReducer.isAuthenticated,
@@ -140,7 +162,12 @@ export const HeaderComponent = () => {
       </NavWrapper>
       {isAuthenticated ? (
         <AccountWrapper>
-          <AccountComponent />
+          <InfoWrapper>
+            <AccountInfoComponent />
+          </InfoWrapper>
+          <UserWrapper>
+            <AccountUserComponent />
+          </UserWrapper>
         </AccountWrapper>
       ) : (
         <AuthWrapper>
