@@ -31,6 +31,7 @@ const Header = styled.div`
 const LogoWrapper = styled.div`
   position: absolute;
   left: 60px;
+  z-index: 1;
   @media (max-width: 960px) {
     left: 30px;
   }
@@ -87,6 +88,7 @@ const RegLink = styled(NavLink)`
   color: rgba(0, 0, 0, 0.4);
   padding: 0 18px;
   border-right: 2px solid ${colors.primary.teal};
+  z-index: 1;
 `;
 
 const LoginButton = styled.button`
@@ -100,6 +102,7 @@ const LoginButton = styled.button`
   font-weight: 500;
   font-size: 14px;
   transition: 500ms;
+  z-index: 1;
   &:hover {
     background: ${colors.secondary.lightTealHover};
   }
