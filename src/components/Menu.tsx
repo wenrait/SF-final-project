@@ -103,7 +103,7 @@ const AuthWrapper = styled.div`
   gap: 20px;
 `;
 
-const RegLink = styled.a`
+const RegLink = styled(NavLink)`
   text-decoration: none;
   color: rgba(255, 255, 255, 0.4);
   font-size: 16px;
@@ -153,6 +153,11 @@ export const MenuComponent = () => {
     };
   }, [setIsMenuOpen]);
 
+  const handleClick = () => {
+    setIsMenuOpen(false);
+    navigate('/login');
+  };
+
   return (
     <>
       <CSSTransition
@@ -177,10 +182,10 @@ export const MenuComponent = () => {
               <AccountUserComponent />
             ) : (
               <AuthWrapper>
-                <RegLink href={'/'}>Зарегистрироваться</RegLink>
-                <LoginButton onClick={() => navigate('/login')}>
-                  Войти
-                </LoginButton>
+                <RegLink to={'/'} onClick={() => setIsMenuOpen(false)}>
+                  Зарегистрироваться
+                </RegLink>
+                <LoginButton onClick={handleClick}>Войти</LoginButton>
               </AuthWrapper>
             )}
           </Content>
