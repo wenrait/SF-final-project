@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { AccInfoResponse } from '../types.ts';
-import { RootState } from '../redux/store.ts';
+import { AccInfoResponse } from '../../../types.ts';
+import { RootState } from '../../store.ts';
 
 export const accountInfoApi = createApi({
   reducerPath: 'accountInfoApi',

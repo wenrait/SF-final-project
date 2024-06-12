@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { accountLoginApi } from '../api/accountLoginApi.ts';
-import { authSlice } from './authSlice.ts';
+import { accountLoginApi } from './services/api/accountLoginApi.ts';
+import { authSlice } from './slices/authSlice.ts';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { accountInfoApi } from '../api/accountInfoApi.ts';
+import { accountInfoApi } from './services/api/accountInfoApi.ts';
 
 export const store = configureStore({
   reducer: {

@@ -1,7 +1,7 @@
-import { useGetAccountInfoQuery } from '../../api/accountInfoApi.ts';
+import { useGetAccountInfoQuery } from '../../redux/services/api/accountInfoApi.ts';
 import styled from 'styled-components';
-import { useAppSelector } from '../../hooks.ts';
-import { handleRTKQueryError } from '../../redux/handleError.ts';
+import { useAppSelector } from '../../redux/services/hooks.ts';
+import { handleRTKQueryError } from '../../redux/services/handleError.ts';
 
 const Info = styled.div`
   padding: 12px;

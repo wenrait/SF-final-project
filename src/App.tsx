@@ -3,7 +3,7 @@ import { HomePage } from './pages/Home.tsx';
 import { Routes, Route } from 'react-router-dom';
 import { FooterComponent } from './layout/Footer.tsx';
 import { LoginPage } from './pages/Login.tsx';
-import { useAppSelector } from './hooks.ts';
+import { useAppSelector } from './redux/services/hooks.ts';
 import styled from 'styled-components';
 import { colors } from './styles/globalStyles.ts';
 import { MenuComponent } from './components/Menu.tsx';

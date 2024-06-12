@@ -4,7 +4,7 @@ import homeSvg2 from './../assets/svg/home__2.svg';
 import { TariffComponent } from '../components/Tariff.tsx';
 import { ButtonComponent } from '../components/Button.tsx';
 import { CarouselComponent } from '../components/Carousel.tsx';
-import { useAppSelector } from '../hooks.ts';
+import { useAppSelector } from '../redux/services/hooks.ts';
 
 const Home = styled.div`
   display: flex;

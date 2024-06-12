@@ -2,7 +2,7 @@ import { CSSTransition } from 'react-transition-group';
 import { useContext, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { colors } from '../styles/globalStyles.ts';
-import { useAppSelector } from '../hooks.ts';
+import { useAppSelector } from '../redux/services/hooks.ts';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { LogoComponent } from './Logo.tsx';
 import { AccountUserComponent } from './Account/AccountUser.tsx';

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { colors } from '../styles/globalStyles.ts';
 import { LogoComponent } from '../components/Logo.tsx';
-import { useAppSelector } from '../hooks.ts';
+import { useAppSelector } from '../redux/services/hooks.ts';
 import Hamburger from 'hamburger-react';
 import { useContext } from 'react';
 import { AppContext } from '../App.tsx';

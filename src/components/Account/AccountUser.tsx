@@ -1,6 +1,6 @@
 import avatar from '../../assets/svg/avatar.svg';
-import { setAuthData } from '../../redux/authSlice.ts';
-import { useAppDispatch } from '../../hooks.ts';
+import { setAuthData } from '../../redux/slices/authSlice.ts';
+import { useAppDispatch } from '../../redux/services/hooks.ts';
 import styled from 'styled-components';
 
 const User = styled.div`
