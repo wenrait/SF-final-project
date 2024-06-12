@@ -69,8 +69,7 @@ export const LoginPage = () => {
     <Login>
       <Content>
         <Title>
-          Для оформления подписки на тариф, необходимо
-          авторизоваться.
+          Для оформления подписки на тариф, необходимо авторизоваться.
         </Title>
         <KeyDesktop src={keySvg} alt={'Key'} />
       </Content>
