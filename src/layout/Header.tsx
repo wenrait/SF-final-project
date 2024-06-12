@@ -130,7 +130,7 @@ const HamburgerWrapper = styled.div`
 
 const InfoWrapper = styled.div`
   position: absolute;
-  left: 65%;
+  left: 64.3%;
   @media (max-width: 960px) {
     display: flex;
     align-items: center;
