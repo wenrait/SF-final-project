@@ -8,9 +8,9 @@ import { colors } from '../styles/globalStyles.ts';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useAppDispatch } from '../hooks.ts';
 import { useNavigate } from 'react-router-dom';
-import { usePostAuthDataMutation } from '../api/accountLoginApi.ts';
-import { handleRTKQueryError } from '../redux/handleError.ts';
-import { setAuthData } from '../redux/authSlice.ts';
+import { usePostAuthDataMutation } from '../redux/services/api/accountLoginApi.ts';
+import { handleRTKQueryError } from '../redux/services/handleError.ts';
+import { setAuthData } from '../redux/slices/authSlice.ts';
 
 const Form = styled.form`
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.15);
