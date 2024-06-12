@@ -13,6 +13,7 @@ const Info = styled.div`
   background: rgba(217, 217, 217, 0.3);
   border-radius: 5px;
   line-height: 12px;
+  width: fit-content;
   @media (max-width: 600px) {
     align-items: flex-start;
     padding: 5px 10px;
