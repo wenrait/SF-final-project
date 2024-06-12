@@ -2,8 +2,9 @@ import styled from 'styled-components';
 import { colors } from '../styles/globalStyles.ts';
 
 export interface ButtonComponentProps {
-  font: 'small' | 'medium';
+  font?: 'small' | 'medium';
   width: 'fit-content' | '100%';
+  color?: 'blue' | 'grey';
   text: string;
   type?: 'button' | 'submit' | 'reset' | undefined;
   disabled?: boolean;
@@ -12,9 +13,12 @@ export interface ButtonComponentProps {
 const Button = styled.button<{
   $font: 'small' | 'medium';
   $width: 'fit-content' | '100%';
+  $color: 'blue' | 'grey';
 }>`
-  background: ${colors.secondary.blue};
-  color: ${colors.primary.white};
+  background: ${(props) =>
+    props.$color === 'blue' ? colors.secondary.blue : 'rgba(210, 210, 210, 1)'};
+  color: ${(props) =>
+    props.$color === 'blue' ? colors.primary.white : 'black'};
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-size: ${(props) => (props.$font === 'medium' ? '22px' : '20px')};
   font-weight: ${(props) => (props.$font === 'medium' ? 500 : 400)};
@@ -41,14 +45,21 @@ const Button = styled.button<{
 `;
 
 export const ButtonComponent = ({
-  font,
+  font = 'small',
   width,
   text,
   type,
+  color = 'blue',
   disabled,
 }: ButtonComponentProps) => {
   return (
-    <Button $font={font} $width={width} type={type} disabled={disabled}>
+    <Button
+      $font={font}
+      $width={width}
+      $color={color}
+      type={type}
+      disabled={disabled}
+    >
       {text}
     </Button>
   );
