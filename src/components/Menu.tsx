@@ -1,11 +1,12 @@
 import { CSSTransition } from 'react-transition-group';
-import {Dispatch, SetStateAction, useEffect, useRef} from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { colors } from '../styles/globalStyles.ts';
 import { useAppSelector } from '../hooks.ts';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { LogoComponent } from './Logo.tsx';
 import { AccountUserComponent } from './Account/AccountUser.tsx';
+import { AppContext } from '../App.tsx';
 
 const Menu = styled.div`
   display: flex;
@@ -132,15 +133,11 @@ const LoginButton = styled.button`
   }
 `;
 
-export interface MenuComponentProps {
-  isOpen: boolean;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
-}
-
-export const MenuComponent = ({ isOpen, setIsOpen }: MenuComponentProps) => {
+export const MenuComponent = () => {
   const isAuthenticated = useAppSelector(
     (state) => state.authReducer.isAuthenticated,
   );
+  const { isMenuOpen, setIsMenuOpen } = useContext(AppContext);
 
   const menuRef = useRef(null);
   const menuSliderRef = useRef(null);
@@ -149,7 +146,7 @@ export const MenuComponent = ({ isOpen, setIsOpen }: MenuComponentProps) => {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 960) {
-        setIsOpen(false);
+        setIsMenuOpen(false);
       }
     };
 
@@ -157,14 +154,14 @@ export const MenuComponent = ({ isOpen, setIsOpen }: MenuComponentProps) => {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, [setIsOpen]);
+  }, [setIsMenuOpen]);
 
   return (
     <>
       <CSSTransition
         mountOnEnter
         timeout={300}
-        in={isOpen}
+        in={isMenuOpen}
         classNames={'menu'}
         nodeRef={menuRef}
         unmountOnExit
@@ -195,7 +192,7 @@ export const MenuComponent = ({ isOpen, setIsOpen }: MenuComponentProps) => {
       <CSSTransition
         mountOnEnter
         timeout={5000}
-        in={isOpen}
+        in={isMenuOpen}
         classNames={'menu-slider'}
         nodeRef={menuSliderRef}
         unmountOnExit

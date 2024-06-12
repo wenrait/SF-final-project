@@ -5,8 +5,8 @@ import { LogoComponent } from '../components/Logo.tsx';
 import { useAppSelector } from '../hooks.ts';
 import { AccountComponent } from '../components/Account/Account.tsx';
 import Hamburger from 'hamburger-react';
-import { useState } from 'react';
-import { MenuComponent } from '../components/Menu.tsx';
+import { useContext } from 'react';
+import { AppContext } from '../App.tsx';
 
 const Header = styled.div`
   display: flex;
@@ -122,8 +122,8 @@ export const HeaderComponent = () => {
   const isAuthenticated = useAppSelector(
     (state) => state.authReducer.isAuthenticated,
   );
+  const { isMenuOpen, setIsMenuOpen } = useContext(AppContext);
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <Header>
@@ -153,13 +153,12 @@ export const HeaderComponent = () => {
           duration={0.3}
           direction={'right'}
           distance={'sm'}
-          color={isOpen ? 'white' : colors.primary.teal}
+          color={isMenuOpen ? 'white' : colors.primary.teal}
           easing={'ease-out'}
-          toggled={isOpen}
-          toggle={setIsOpen}
+          toggled={isMenuOpen}
+          toggle={setIsMenuOpen}
         />
       </HamburgerWrapper>
-      <MenuComponent isOpen={isOpen} setIsOpen={setIsOpen} />
     </Header>
   );
 };
