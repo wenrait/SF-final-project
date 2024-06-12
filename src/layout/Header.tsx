@@ -100,9 +100,10 @@ const LoginButton = styled.button`
 `;
 
 const HamburgerWrapper = styled.div`
+  position: absolute;
+  right: 30px;
   display: none;
   z-index: 11;
-  background: transparent;
   > div {
     > div {
       height: 5px !important;
