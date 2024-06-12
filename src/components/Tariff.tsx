@@ -72,12 +72,12 @@ const tariffs = {
 };
 
 const Tariff = styled.div<{
-  tariff: string;
+  $tariff: string;
   $currentTariff?: string;
   $color: string;
 }>`
   border: ${(props) =>
-    props.tariff === props.$currentTariff ? `2px solid ${props.$color}` : '0'};
+    props.$tariff === props.$currentTariff ? `2px solid ${props.$color}` : '0'};
   border-radius: 13px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
   flex: 1;
@@ -209,7 +209,7 @@ export const TariffComponent = ({ tariff }: TariffComponentProps) => {
 
   return (
     <Tariff
-      tariff={tariff}
+      $tariff={tariff}
       $currentTariff={currentTariff}
       $color={tariffs[tariff].color}
     >
