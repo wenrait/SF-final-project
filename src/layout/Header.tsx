@@ -19,6 +19,7 @@ const Header = styled.div`
   align-items: center;
   font-size: 14px;
   box-sizing: border-box;
+  position: relative;
   @media (max-width: 960px) {
     padding: 0 30px;
   }
@@ -28,16 +29,21 @@ const Header = styled.div`
 `;
 
 const LogoWrapper = styled.div`
-  display: block;
-  flex: 1;
-  align-items: center;
-  justify-content: space-between;
+  position: absolute;
+  left: 60px;
+  @media (max-width: 960px) {
+    left: 30px;
+  }
   @media (max-width: 600px) {
-    flex: 0;
+    left: 14px;
   }
 `;
 
 const NavWrapper = styled.div`
+  position: absolute;
+  width: 100%;
+  left: 0;
+  margin: auto;
   display: flex;
   flex: 1;
   align-items: center;
@@ -49,9 +55,8 @@ const NavWrapper = styled.div`
 
 const AccountWrapper = styled.div`
   display: flex;
-  flex: 1;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 const Nav = styled.nav`
