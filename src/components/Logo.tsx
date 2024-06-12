@@ -1,36 +1,30 @@
-import HeaderLogoLarge from '../assets/svg/logo__header.svg';
-import FooterLogoLarge from '../assets/svg/logo__footer.svg';
-import HeaderLogoSmall from '../assets/svg/logo__header--mobile.svg';
-import FooterLogoSmall from '../assets/svg/logo__footer--mobile.svg';
+import coloredLogo from '../assets/svg/logo--colored.svg';
+import whiteLogo from '../assets/svg/logo--white.svg';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
-const LogoLarge = styled.img`
+const Logo = styled.img`
+  width: 141px;
+  height: 93px;
+  cursor: pointer;
   display: block;
-  @media (max-width: 601px) {
-    display: none;
-  }
-`;
-
-const LogoSmall = styled.img`
-  display: none;
-  @media (max-width: 600px) {
-    display: block;
+  object-fit: cover;
+  @media (max-width: 961px) {
+    width: 111px;
   }
 `;
 
 export interface LogoComponentsProps {
-  place: 'header' | 'footer';
-  onClick?: () => void;
+  type: 'colored' | 'white';
 }
 
-export const LogoComponent = ({ place, onClick }: LogoComponentsProps) => {
-  const logoLarge = place === 'header' ? HeaderLogoLarge : FooterLogoLarge;
-  const logoSmall = place === 'header' ? HeaderLogoSmall : FooterLogoSmall;
-
+export const LogoComponent = ({ type }: LogoComponentsProps) => {
+  const navigate = useNavigate();
   return (
-    <>
-      <LogoLarge src={logoLarge} alt="СКАН" onClick={onClick} />
-      <LogoSmall src={logoSmall} alt="СКАН" onClick={onClick} />
-    </>
+    <Logo
+      src={type === 'colored' ? coloredLogo : whiteLogo}
+      alt="СКАН"
+      onClick={() => navigate('/')}
+    />
   );
 };
