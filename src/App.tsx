@@ -21,9 +21,13 @@ const HeaderWrapper = styled.header`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: fixed;
+  background: white;
+  z-index: 7;
 `;
 
 const MainWrapper = styled.main`
+  margin-top: 93px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -62,9 +66,9 @@ function App() {
   return (
     <AppContext.Provider value={{ isMenuOpen, setIsMenuOpen }}>
       <AppWrapper>
-        <MenuComponent />
         <HeaderWrapper>
           <HeaderComponent />
+          <MenuComponent />
         </HeaderWrapper>
         <MainWrapper>
           <Routes>
