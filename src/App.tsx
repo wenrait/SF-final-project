@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import { colors } from './styles/globalStyles.ts';
 import { MenuComponent } from './components/Menu.tsx';
 import { createContext, Dispatch, SetStateAction, useState } from 'react';
+import {SearchPage} from "./pages/Search.tsx";
 
 const AppWrapper = styled.div`
   display: flex;
@@ -54,9 +55,7 @@ export const AppContext = createContext<AppContextProps>({
 });
 
 function App() {
-  const isAuthenticated = useAppSelector(
-    (state) => state.authReducer.isAuthenticated,
-  );
+  const isAuth = useAppSelector((state) => state.authReducer.isAuthenticated);
   const ErrorMock = () => {
     return <div>Error</div>;
   };
@@ -73,9 +72,8 @@ function App() {
         <MainWrapper>
           <Routes>
             <Route path={'/'} element={<HomePage />} />
-            {!isAuthenticated && (
-              <Route path={'/login'} element={<LoginPage />} />
-            )}
+            {!isAuth && <Route path={'/login'} element={<LoginPage />} />}
+            {!isAuth && <Route path={'/search'} element={<SearchPage />} />}
             <Route path={'/*'} element={<ErrorMock />} />
           </Routes>
         </MainWrapper>
