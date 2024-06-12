@@ -7,13 +7,28 @@ const Account = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media (max-width: 960px) {
+    justify-content: center;
+  }
+`;
+
+const InfoWrapper = styled.div``;
+
+const UserWrapper = styled.div`
+  @media (max-width: 960px) {
+    display: none;
+  }
 `;
 
 export const AccountComponent = () => {
   return (
     <Account>
-      <AccountInfoComponent />
-      <AccountUserComponent />
+      <InfoWrapper>
+        <AccountInfoComponent />
+      </InfoWrapper>
+      <UserWrapper>
+        <AccountUserComponent />
+      </UserWrapper>
     </Account>
   );
 };
