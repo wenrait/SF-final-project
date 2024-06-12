@@ -5,9 +5,10 @@ import iconPro from '../assets/svg/Tariff__pro.svg';
 import iconBusiness from '../assets/svg/Tariff__business.svg';
 import iconList from '../assets/svg/Tariff__list__icon.svg';
 import { ButtonComponent } from './Button.tsx';
+import { useAppSelector } from '../hooks.ts';
 
 export interface TariffComponentProps {
-  type: 'beginner' | 'pro' | 'business';
+  tariff: 'beginner' | 'pro' | 'business';
 }
 
 const tariffs = {
@@ -27,6 +28,8 @@ const tariffs = {
         'Поддержка 24/7',
       ],
     },
+    color: colors.secondary.orange,
+    text: 'black',
   },
   pro: {
     header: {
@@ -44,6 +47,8 @@ const tariffs = {
         'Рекомендации по приоритетам',
       ],
     },
+    color: colors.secondary.lightTeal,
+    text: 'black',
   },
   business: {
     header: {
@@ -61,13 +66,19 @@ const tariffs = {
         'Приоритетная поддержка',
       ],
     },
+    color: 'black',
+    text: 'white',
   },
 };
 
-const Tariff = styled.div<TariffComponentProps>`
+const Tariff = styled.div<{
+  tariff: string;
+  $currentTariff?: string;
+  $color: string;
+}>`
   border: ${(props) =>
-    props.type === 'beginner' ? `2px solid ${colors.secondary.orange}` : 0};
-  border-radius: 10px;
+    props.tariff === props.$currentTariff ? `2px solid ${props.$color}` : '0'};
+  border-radius: 13px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
   flex: 1;
   min-width: 405px;
@@ -78,18 +89,9 @@ const Tariff = styled.div<TariffComponentProps>`
   }
 `;
 
-const Header = styled.div<TariffComponentProps>`
-  background: ${(props) => {
-    switch (props.type) {
-      case 'beginner':
-        return colors.secondary.orange;
-      case 'pro':
-        return colors.secondary.lightTeal;
-      case 'business':
-        return colors.primary.black;
-    }
-  }};
-  color: ${(props) => props.type === 'business' && colors.primary.white};
+const Header = styled.div<{ $color: string; $text: string }>`
+  background: ${(props) => props.$color};
+  color: ${(props) => props.$text};
   position: relative;
   padding: 30px;
   border-radius: 10px 10px 0 0;
@@ -179,18 +181,25 @@ const ListItem = styled.li`
   }
 `;
 
-export const TariffComponent = ({ type }: TariffComponentProps) => {
-  const { icon, title, description } = tariffs[type].header;
+export const TariffComponent = ({ tariff }: TariffComponentProps) => {
+  const { icon, title, description } = tariffs[tariff].header;
   const {
     priceWithDiscount: withDiscount,
     priceWithoutDiscount: withoutDiscount,
     installment,
     features,
-  } = tariffs[type].content;
+  } = tariffs[tariff].content;
+
+  const currentTariff =
+    useAppSelector((state) => state.authReducer.tariff) || undefined;
 
   return (
-    <Tariff type={type}>
-      <Header type={type}>
+    <Tariff
+      tariff={tariff}
+      $currentTariff={currentTariff}
+      $color={tariffs[tariff].color}
+    >
+      <Header $color={tariffs[tariff].color} $text={tariffs[tariff].text}>
         <Title>{title}</Title>
         <Description>{description}</Description>
         <Icon src={icon} />
