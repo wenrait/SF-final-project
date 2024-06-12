@@ -8,6 +8,9 @@ const User = styled.div`
   gap: 5px;
   align-items: center;
   justify-content: center;
+  @media (max-width: 960px) {
+    flex-direction: column;
+  }
 `;
 
 const Content = styled.div`
@@ -31,6 +34,9 @@ const Button = styled.button`
   width: fit-content;
   margin-left: auto;
   line-height: 12px;
+  @media (max-width: 960px) {
+    margin: auto;
+  }
 `;
 
 const Avatar = styled.img`
