@@ -241,7 +241,15 @@ export const TariffComponent = ({ tariff }: TariffComponentProps) => {
             ))}
           </List>
         </ListContainer>
-        <ButtonComponent font={'small'} width={'100%'} text={'Подробнее'} />
+        {tariff === currentTariff ? (
+          <ButtonComponent
+            color={'grey'}
+            width={'100%'}
+            text={'Перейти в личный кабинет'}
+          />
+        ) : (
+          <ButtonComponent width={'100%'} text={'Подробнее'} />
+        )}
       </Content>
     </Tariff>
   );
