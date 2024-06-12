@@ -26,7 +26,7 @@ const Button = styled.button<{
   cursor: pointer;
   border: 0;
   border-radius: 5px;
-  padding: 16px 64px;
+  padding: 16px;
   transition: 500ms;
 
   &:disabled {
