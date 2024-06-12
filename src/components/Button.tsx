@@ -40,7 +40,10 @@ const Button = styled.button<{
   }
 
   &:hover:not(:disabled) {
-    background: ${colors.secondary.blueHover};
+    background: ${(props) =>
+      props.$color === 'blue'
+        ? colors.secondary.blueHover
+        : 'rgb(173,173,173)'};
   }
 `;
 
