@@ -173,7 +173,13 @@ export const AuthFormComponent = () => {
         setErrorMessage(message);
       } else {
         navigate('/');
-        dispatch(setAuthData({ ...data, isAuthenticated: true }));
+        dispatch(
+          setAuthData({
+            ...data,
+            isAuthenticated: true,
+            tariff: 'beginner',
+          }),
+        );
       }
     } catch (e) {
       if (e instanceof Error) {
