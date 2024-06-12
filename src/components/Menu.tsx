@@ -11,15 +11,14 @@ import { AppContext } from '../App.tsx';
 const Menu = styled.div`
   display: flex;
   position: absolute;
+  top: 0;
   padding: 0 60px;
   width: 100%;
   height: 100vh;
   background: ${colors.primary.teal};
   color: white;
-  z-index: 10;
-  top: 0;
-  left: 0;
   box-sizing: border-box;
+  z-index: 9;
   &.menu-enter {
     opacity: 0;
   }
@@ -46,13 +45,12 @@ const Menu = styled.div`
 const MenuSlider = styled.div`
   display: flex;
   position: absolute;
+  top: 0;
   width: 100%;
   height: 100vh;
   background: ${colors.primary.teal};
   color: white;
-  z-index: 9;
-  top: 0;
-  left: 0;
+  z-index: 8;
   &.menu-slider-enter {
     transform: translateX(100%);
   }
@@ -79,10 +77,10 @@ const Content = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 75px;
 `;
 
 const Nav = styled.nav`
-  padding: 75px;
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -103,7 +101,6 @@ const AuthWrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   gap: 20px;
-  flex: 1;
 `;
 
 const RegLink = styled.a`
