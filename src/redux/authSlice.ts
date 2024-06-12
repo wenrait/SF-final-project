@@ -4,12 +4,14 @@ export interface IAuthState {
   accessToken: string | null;
   expire: Date | null;
   isAuthenticated: boolean;
+  tariff: string | null;
 }
 
 const initialState: IAuthState = {
   accessToken: null,
   expire: null,
   isAuthenticated: false,
+  tariff: null,
 };
 
 const getStateFromStorage = (): IAuthState => {
@@ -47,6 +49,7 @@ export const authSlice = createSlice({
       state.accessToken = action.payload.accessToken;
       state.expire = action.payload.expire;
       state.isAuthenticated = action.payload.isAuthenticated;
+      state.tariff = action.payload.tariff;
       saveStateToStorage(state);
     },
   },
