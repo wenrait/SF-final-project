@@ -121,6 +121,20 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 60px;
+  position: relative;
+`;
+
+const CurrentTariff = styled.div`
+  background: rgba(59, 165, 224, 1);
+  color: white;
+  font-size: 14px;
+  line-height: 16.94px;
+  letter-spacing: 0.01em;
+  border-radius: 10px;
+  padding: 4px 13px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 `;
 
 const PriceContainer = styled.div`
@@ -205,6 +219,9 @@ export const TariffComponent = ({ tariff }: TariffComponentProps) => {
         <Icon src={icon} />
       </Header>
       <Content>
+        {tariff === currentTariff && (
+          <CurrentTariff>Текущий тариф</CurrentTariff>
+        )}
         <PriceContainer>
           <Price>
             <WithDiscount>{withDiscount} ₽</WithDiscount>
