@@ -14,15 +14,16 @@ export interface AccInfoResponse {
 
 export interface SearchHistogramsReq {
   intervalType: 'day' | 'week' | 'month' | 'quarter' | 'year'; // Шаг статистики. Для проекта - month.
-  histogramTypes: string[]; // Типы статистики. Одно или несколько значений. Допустимые значения: totalDocuments — всего публикаций; riskFactors — публикаций, в которых целевые объекты являются участниками риск-факторов. Для целей данного проекта необходимо отправлять оба значен
+  histogramTypes: ('totalDocuments' | 'riskFactors')[]; // Типы статистики. Одно или несколько значений. Допустимые значения: totalDocuments — всего публикаций; riskFactors — публикаций, в которых целевые объекты являются участниками риск-факторов. Для целей данного проекта необходимо отправлять оба значен
   issueDateInterval: Search.DateInterval; // Период дат поиска.
   searchContext: Search.SearchContext; // Контекст поиска.
-  similarMode: 'none' | 'duplicates'; // none — без фильтрации, в выдачу включаются все публикации; duplicates — фильтр по дубликатам, в выдачу включается по одной публикации из каждого кластера дублей.
   limit: number; // Количество возвращаемых публикаций. Значение от 1 до 1000.
   sortType: 'issueDate' | 'sourceInfluence'; // Тип сортировки. issueDate — дата публикации; sourceInfluence — вес источника.
   sortDirectionType: 'desc' | 'asc'; // desc - по убыванию, asc - по возрастанию
-  // attributeFilters?: Filter.Attributes; // Фильтр по атрибутам публикаций.
+  attributeFilters?: Filter.Attributes; // Фильтр по атрибутам публикаций.
   searchArea: unknown; // В рамках данного проекта не используется.
+  similarMode: 'none' | 'duplicates'; // none — без фильтрации, в выдачу включаются все публикации; duplicates — фильтр по дубликатам, в выдачу включается по одной публикации из каждого кластера дублей.
+
 }
 
 export interface SearchHistogramsRes {
@@ -48,6 +49,15 @@ export interface DocumentsRes {
 export interface EventFiltersInfo {
   usedCompanyCount: number; // Количество компаний, по которым производится онлайн-мониторинг в данном аккаунте.
   companyLimit: number; // Максимальное количество компаний, которое доступно поставить на онлайн-мониторинг, согласно условиям тарифа для аккаунта.
+}
+
+export namespace Filter {
+  // Фильтры по атрибутам документа/публикации.
+  export interface Attributes {
+    excludeTechNews: boolean; // Признак исключения публикаций с атрибутом {IsTechNews} из результатов.
+    excludeAnnouncements: boolean; // Признак исключения публикаций с атрибутом {IsAnnouncement} из результатов.
+    excludeDigests: boolean; // Признак исключения публикаций с атрибутом {IsDigest} из результатов.
+  }
 }
 
 export namespace Search {
@@ -90,6 +100,10 @@ export namespace Search {
       entityId: number; // Идентификатор по каталогу объектов СКАН
       inn: string; // ИНН юридического лица
       maxFullness: boolean; // Подход к поиску — признак максимальной полноты. Применяется только при поиске по sparkId или inn. Одно значение из списка: false — выдача только результатов с высокой точностью (поиск с учётом контекста); true — выдача результатов с высокой полнотой (объединяются результаты поиска с учётом контекста и поиска по похожим названиям).
+    }
+
+    export interface SearchEntity {
+
     }
   }
 }

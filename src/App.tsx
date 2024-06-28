@@ -1,6 +1,6 @@
 import { HeaderComponent } from './layout/Header.tsx';
 import { HomePage } from './pages/Home.tsx';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { FooterComponent } from './layout/Footer.tsx';
 import { LoginPage } from './pages/Login.tsx';
 import { useAppSelector } from './redux/services/hooks.ts';
@@ -56,10 +56,6 @@ export const AppContext = createContext<AppContextProps>({
 
 function App() {
   const isAuth = useAppSelector((state) => state.authReducer.isAuthenticated);
-  const ErrorMock = () => {
-    return <div>Error</div>;
-  };
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -73,8 +69,8 @@ function App() {
           <Routes>
             <Route path={'/'} element={<HomePage />} />
             {!isAuth && <Route path={'/login'} element={<LoginPage />} />}
-            {!isAuth && <Route path={'/search'} element={<SearchPage />} />}
-            <Route path={'/*'} element={<ErrorMock />} />
+            {isAuth && <Route path={'/search'} element={<SearchPage />} />}
+            <Route path={'/*'} element={<Navigate to={'/'} />} />
           </Routes>
         </MainWrapper>
         <FooterWrapper>
