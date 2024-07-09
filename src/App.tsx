@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import { colors } from './styles/globalStyles.ts';
 import { MenuComponent } from './components/Menu.tsx';
 import { createContext, Dispatch, SetStateAction, useState } from 'react';
+import { SearchPage } from './pages/Search.tsx';
 
 const AppWrapper = styled.div`
   display: flex;
@@ -76,6 +77,7 @@ function App() {
             {!isAuthenticated && (
               <Route path={'/login'} element={<LoginPage />} />
             )}
+            <Route path={'/search'} element={<SearchPage />} />
             <Route path={'/*'} element={<ErrorMock />} />
           </Routes>
         </MainWrapper>

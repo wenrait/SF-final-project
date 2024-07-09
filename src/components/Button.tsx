@@ -8,6 +8,7 @@ export interface ButtonComponentProps {
   text: string;
   type?: 'button' | 'submit' | 'reset' | undefined;
   disabled?: boolean;
+  onClick?: () => void;
 }
 
 const Button = styled.button<{
@@ -54,6 +55,7 @@ export const ButtonComponent = ({
   type,
   color = 'blue',
   disabled,
+  onClick,
 }: ButtonComponentProps) => {
   return (
     <Button
@@ -62,6 +64,7 @@ export const ButtonComponent = ({
       $color={color}
       type={type}
       disabled={disabled}
+      onClick={onClick}
     >
       {text}
     </Button>

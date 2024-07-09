@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import keySvg from '../assets/svg/LoginPage__1.svg';
 import { AuthFormComponent } from '../components/AuthForm.tsx';
+import { useEffect } from 'react';
 
 const Login = styled.div`
   display: flex;
@@ -65,6 +66,10 @@ const Title = styled.h1`
 `;
 
 export const LoginPage = () => {
+  useEffect(() => {
+    console.log(import.meta.env.VITE_API_URL);
+  }, []);
+
   return (
     <Login>
       <Content>

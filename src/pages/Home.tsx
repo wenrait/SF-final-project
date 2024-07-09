@@ -5,6 +5,7 @@ import { TariffComponent } from '../components/Tariff.tsx';
 import { ButtonComponent } from '../components/Button.tsx';
 import { CarouselComponent } from '../components/Carousel.tsx';
 import { useAppSelector } from '../hooks.ts';
+import { useNavigate } from 'react-router-dom';
 
 const Home = styled.div`
   display: flex;
@@ -110,6 +111,8 @@ export const HomePage = () => {
     (state) => state.authReducer.isAuthenticated,
   );
 
+  const navigate = useNavigate();
+
   return (
     <Home>
       <Top>
@@ -130,6 +133,7 @@ export const HomePage = () => {
               font={'medium'}
               width={'fit-content'}
               text={'Запросить данные'}
+              onClick={() => navigate('/search')}
             />
           )}
         </Text>
