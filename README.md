@@ -301,3 +301,15 @@ React-компоненты и хуки, стрелочные функции, д�
 и так далее.
 4. При размещении проекта на GitHub не забудьте добавить папку 
 node_modules в файл .gitignore, чтобы она не попала в ваш репозиторий.
+
+## Пример содержимого файла .env для работы с окружением
+
+VITE_API_URL=https://gateway.scan-interfax.ru/api/v1
+
+VITE_ACCOUNT_LOGIN=/account/login
+
+VITE_ACCOUNT_INFO=/account/info
+
+VITE_SEARCH_HISTOGRAMS=/objectsearch/histograms
+
+VITE_SEARCH=/objectsearch
