@@ -4,7 +4,7 @@ import iconBeginner from '../assets/svg/Tariff__beginner.svg';
 import iconPro from '../assets/svg/Tariff__pro.svg';
 import iconBusiness from '../assets/svg/Tariff__business.svg';
 import iconList from '../assets/svg/Tariff__list__icon.svg';
-import { ButtonComponent } from './Button.tsx';
+import { ButtonComponent } from './Buttons/Button.tsx';
 import { useAppSelector } from '../redux/services/hooks.ts';
 
 export interface TariffComponentProps {

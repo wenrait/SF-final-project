@@ -13,10 +13,17 @@ const Info = styled.div`
   background: rgba(217, 217, 217, 0.3);
   border-radius: 5px;
   line-height: 12px;
-  width: fit-content;
+  width: 100%;
+  max-width: 162px;
+  box-sizing: border-box;
+  height: 100%;
+  max-height: 56px;
   @media (max-width: 600px) {
     align-items: flex-start;
     padding: 5px 10px;
+    max-width: 118px;
+    height: 80px;
+    max-height: none;
   }
 `;
 

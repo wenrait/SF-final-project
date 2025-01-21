@@ -4,14 +4,13 @@ export interface IAuthState {
   accessToken: string | null;
   expire: Date | null;
   isAuthenticated: boolean;
-  tariff: string | null;
+  tariff?: string;
 }
 
 const initialState: IAuthState = {
   accessToken: null,
   expire: null,
   isAuthenticated: false,
-  tariff: null,
 };
 
 const getStateFromStorage = (): IAuthState => {

@@ -1,23 +1,56 @@
-import { Search } from '../../types.ts';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+export interface ISearchDate {
+  startDate: string | null;
+  endDate: string | null;
+}
+
+export enum ISeachTonality {
+  Any = 'any',
+  Positive = 'positive',
+  Neutral = 'neutral',
+  Negative = 'negative',
+}
+
 export interface ISearchState {
-  issueDateInterval: Search.DateInterval;
-  searchContext: {
-    targetSearchEntitiesContext: {
-      targetSearchEntities: [
-        {
-          type: 'company';
-          sparkId: null;
-          entityId: null;
-          inn: number | null; // TODO
-          maxFullness: boolean;
-          inBusinessNews: boolean | null;
-        },
-      ];
-      onlyMainRole: boolean;
-      tonality: 'any' | 'negative' | 'positive'; // TODO
-      onlyWithRiskFactors: boolean;
+    issueDateInterval: ISearchDate;
+    searchContext: {
+      targetSearchEntitiesContext: {
+        targetSearchEntities: [
+          {
+            type: 'company' | 'suggestedPersons';
+            sparkId: number | null;
+            entityId: number | null;
+            inn: number | null;
+            maxFullness: boolean;
+            inBusinessNews: boolean;
+          },
+        ];
+        onlyMainRole: boolean;
+        tonality: ISeachTonality;
+        onlyWithRiskFactors: boolean;
+        riskFactors: {
+          and: [];
+          or: [];
+          not: [];
+        };
+        themes: {
+          and: [];
+          or: [];
+          not: [];
+        };
+      };
+      themesFilter: {
+        and: [];
+        or: [],
+        not: [],
+      };
+    };
+    searchArea: {
+      includedSources: [];
+      excludedSources: [];
+      includedSourceGroups: [];
+      excludedSourceGroups: [];
     };
     attributeFilters: {
       excludeTechNews: boolean;
@@ -28,15 +61,28 @@ export interface ISearchState {
     limit: number | null;
     sortType: 'issueDate' | 'sourceInfluence';
     sortDirectionType: 'desc' | 'asc';
-    intervalType: 'day' | 'week' | 'month' | 'quarter' | 'year';
+    intervalType: 'day' | 'week' | 'month' | 'quarter' | 'year'; 
     histogramTypes: ('totalDocuments' | 'riskFactors')[];
-  };
 }
+
+export interface ISearchReqPayload {
+  inn: number;
+  tonality: ISeachTonality;
+  limit: number;
+  issueDateInterval: ISearchDate;
+  maxFullness: boolean;
+  inBusinessNews: boolean;
+  onlyMainRole: boolean;
+  excludeTechNews: boolean;
+  excludeAnnouncements: boolean;
+  excludeDigests: boolean;
+}
+
 
 const initialState: ISearchState = {
   issueDateInterval: {
-    startDate: '', // TODO
-    endDate: '', // TODO
+    startDate: null,
+    endDate: null,
   },
   searchContext: {
     targetSearchEntitiesContext: {
@@ -45,52 +91,79 @@ const initialState: ISearchState = {
           type: 'company',
           sparkId: null,
           entityId: null,
-          inn: null, // TODO
+          inn: null,
           maxFullness: true,
-          inBusinessNews: null,
+          inBusinessNews: true,
         },
       ],
       onlyMainRole: true,
-      tonality: 'any', // TODO
+      tonality: ISeachTonality.Any,
       onlyWithRiskFactors: false,
+      riskFactors: {
+        and: [],
+        or: [],
+        not: [],
+      },
+      themes: {
+        and: [],
+        or: [],
+        not: [],
+      },
     },
-    attributeFilters: {
-      excludeTechNews: true,
-      excludeAnnouncements: true,
-      excludeDigests: true,
+    themesFilter: {
+      and: [],
+      or: [],
+      not: [],
     },
-    similarMode: 'duplicates',
-    limit: null, // TODO
-    sortType: 'sourceInfluence',
-    sortDirectionType: 'desc',
-    intervalType: 'month',
-    histogramTypes: ['totalDocuments', 'riskFactors'],
   },
+  searchArea: {
+    includedSources: [],
+    excludedSources: [],
+    includedSourceGroups: [],
+    excludedSourceGroups: [],
+  },
+  attributeFilters: {
+    excludeTechNews: false,
+    excludeAnnouncements: false,
+    excludeDigests: false,
+  },
+  similarMode: 'duplicates',
+  limit: null,
+  sortType: 'sourceInfluence',
+  sortDirectionType: 'desc',
+  intervalType: 'month',
+  histogramTypes: ['totalDocuments', 'riskFactors'],
 };
-
-export interface ISearchPayload {
-  startDate: string;
-  endDate: string;
-  inn: number;
-  tonality: 'any' | 'negative' | 'positive';
-  limit: number;
-}
 
 export const searchSlice = createSlice({
   name: 'searchSlice',
   initialState,
   reducers: {
-    setSearchData: (state, action: PayloadAction<ISearchPayload>) => {
-      state.issueDateInterval.startDate = action.payload.startDate;
-      state.issueDateInterval.endDate = action.payload.endDate;
-      state.searchContext.targetSearchEntitiesContext.targetSearchEntities[0].inn =
-        action.payload.inn;
-      state.searchContext.targetSearchEntitiesContext.tonality =
-        action.payload.tonality;
-      state.searchContext.limit = action.payload.limit;
-      state.issueDateInterval.startDate = action.payload.startDate;
+    setSearchReq: (state, action: PayloadAction<ISearchReqPayload>) => {
+      const {
+        inn,
+        tonality,
+        limit,
+        issueDateInterval,
+        maxFullness,
+        inBusinessNews,
+        onlyMainRole,
+        excludeTechNews,
+        excludeAnnouncements,
+        excludeDigests,
+      } = action.payload;
+      state.searchContext.targetSearchEntitiesContext.targetSearchEntities[0].inn = inn;
+      state.searchContext.targetSearchEntitiesContext.tonality = tonality;
+      state.limit = limit;
+      state.issueDateInterval = issueDateInterval;
+      state.searchContext.targetSearchEntitiesContext.targetSearchEntities[0].maxFullness = maxFullness;
+      state.searchContext.targetSearchEntitiesContext.targetSearchEntities[0].inBusinessNews = inBusinessNews;
+      state.searchContext.targetSearchEntitiesContext.onlyMainRole = onlyMainRole;
+      state.attributeFilters.excludeTechNews = excludeTechNews;
+      state.attributeFilters.excludeAnnouncements = excludeAnnouncements;
+      state.attributeFilters.excludeDigests = excludeDigests;
     },
   },
 });
 
-export const { setSearchData } = searchSlice.actions;
+export const { setSearchReq } = searchSlice.actions;

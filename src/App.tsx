@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import { colors } from './styles/globalStyles.ts';
 import { MenuComponent } from './components/Menu.tsx';
 import { createContext, Dispatch, SetStateAction, useState } from 'react';
-import {SearchPage} from "./pages/Search.tsx";
+import { SearchPage } from './pages/Search/Search.tsx';
 
 const AppWrapper = styled.div`
   display: flex;

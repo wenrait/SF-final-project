@@ -1,5 +1,5 @@
 import lockSvg from '../assets/svg/LoginPage__2.svg';
-import { ButtonComponent } from './Button.tsx';
+import { ButtonComponent } from './Buttons/Button.tsx';
 import google from '../assets/svg/LoginPage__Google.svg';
 import facebook from '../assets/svg/LoginPage__Facebook.svg';
 import yandex from '../assets/svg/LoginPage__Yandex.svg';

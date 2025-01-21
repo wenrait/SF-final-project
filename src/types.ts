@@ -27,7 +27,7 @@ export interface SearchHistogramsReq {
 }
 
 export interface SearchHistogramsRes {
-  data: Analytics.HistogramData; // Статистика публикаций по времени.
+  data: Analytics.HistogramData[]; // Статистика публикаций по времени.
 }
 
 export interface SearchReq extends SearchHistogramsReq {}
@@ -116,7 +116,7 @@ export namespace Analytics {
   }
   // Значения статистики по периодам времени:
   export interface IntervalPoint {
-    date: Date; // Дата и время начала периода.
+    date: string; // Дата и время начала периода.
     value: number; // Количество публикаций.
   }
 }

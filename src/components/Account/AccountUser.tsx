@@ -1,4 +1,4 @@
-import avatar from '../../assets/svg/avatar.svg';
+import avatar from '../../assets/png/avatar.png';
 import { setAuthData } from '../../redux/slices/authSlice.ts';
 import { useAppDispatch } from '../../redux/services/hooks.ts';
 import styled from 'styled-components';

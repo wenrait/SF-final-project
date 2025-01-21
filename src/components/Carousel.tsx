@@ -1,12 +1,11 @@
-import arrowLeft from '../assets/svg/Home__Carousel__arrow--left.svg';
 import carouselSvg1 from '../assets/svg/Home__Carousel--1.svg';
 import carouselSvg2 from '../assets/svg/Home__Carousel--2.svg';
 import carouselSvg3 from '../assets/svg/Home__Carousel--3.svg';
-import arrowRight from '../assets/svg/Home__Carousel__arrow--right.svg';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { CarouselButtonComponent } from './Buttons/CarouselButton';
 
 const Carousel = styled(Slider)`
   padding: 0 40px;
@@ -37,53 +36,6 @@ const Text = styled.span`
   line-height: 22px;
 `;
 
-const CarouselButtonCSS = css`
-  padding: 0;
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  position: absolute;
-  top: calc(50% - 20px);
-  border-radius: 10px;
-  transition: 500ms;
-
-  &:hover {
-    transform: scale(1.25, 1.25);
-  }
-`;
-
-const LeftButton = styled.button`
-  ${CarouselButtonCSS};
-  left: 0;
-`;
-
-const RightButton = styled.button`
-  ${CarouselButtonCSS};
-  right: 0;
-`;
-
-export interface SampleArrow {
-  onClick?: () => void;
-}
-
-function SampleNextArrow(props: SampleArrow) {
-  const { onClick } = props;
-  return (
-    <RightButton onClick={onClick}>
-      <Icon src={arrowRight} alt={'Forwards'} />
-    </RightButton>
-  );
-}
-
-function SamplePrevArrow(props: SampleArrow) {
-  const { onClick } = props;
-  return (
-    <LeftButton onClick={onClick}>
-      <Icon src={arrowLeft} alt={'Backwards'} />
-    </LeftButton>
-  );
-}
-
 export const CarouselComponent = () => {
   const settings = {
     infinite: true,
@@ -91,8 +43,8 @@ export const CarouselComponent = () => {
     slidesToShow: 3,
     slidesToScroll: 1,
     swipeToSlide: true,
-    prevArrow: <SamplePrevArrow />,
-    nextArrow: <SampleNextArrow />,
+    prevArrow: <CarouselButtonComponent direction='left' />,
+    nextArrow: <CarouselButtonComponent direction='right' />,
     responsive: [
       {
         breakpoint: 1400,
