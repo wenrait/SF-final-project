@@ -1,10 +1,15 @@
-# Содержимое файла env
+# Содержимое файла .env
 
 VITE_API_URL=https://gateway.scan-interfax.ru/api/v1
+
 VITE_ACCOUNT_LOGIN=/account/login
+
 VITE_ACCOUNT_INFO=/account/info
+
 VITE_SEARCH_HISTOGRAMS=/objectsearch/histograms
+
 VITE_SEARCH=/objectsearch
+
 VITE_DOCUMENTS=/documents
 
 # Авторизация
