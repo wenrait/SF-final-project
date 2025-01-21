@@ -5,7 +5,7 @@ export interface ISearchDate {
   endDate: string | null;
 }
 
-export enum ISeachTonality {
+export enum ISearchTonality {
   Any = 'any',
   Positive = 'positive',
   Neutral = 'neutral',
@@ -27,7 +27,7 @@ export interface ISearchState {
           },
         ];
         onlyMainRole: boolean;
-        tonality: ISeachTonality;
+        tonality: ISearchTonality;
         onlyWithRiskFactors: boolean;
         riskFactors: {
           and: [];
@@ -67,7 +67,7 @@ export interface ISearchState {
 
 export interface ISearchReqPayload {
   inn: number;
-  tonality: ISeachTonality;
+  tonality: ISearchTonality;
   limit: number;
   issueDateInterval: ISearchDate;
   maxFullness: boolean;
@@ -97,7 +97,7 @@ const initialState: ISearchState = {
         },
       ],
       onlyMainRole: true,
-      tonality: ISeachTonality.Any,
+      tonality: ISearchTonality.Any,
       onlyWithRiskFactors: false,
       riskFactors: {
         and: [],

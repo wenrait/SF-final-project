@@ -110,6 +110,7 @@ export const HomePage = () => {
   const isAuthenticated = useAppSelector(
     (state) => state.authReducer.isAuthenticated,
   );
+
   const navigate = useNavigate();
 
   return (

@@ -1,17 +1,17 @@
-import { ISeachTonality } from '../redux/slices/searchSlice';
+import { ISearchTonality } from '../redux/slices/searchSlice';
 
 export const getTonality = (tonality: string) => {
   switch (tonality) {
     case 'Любая':
-      return ISeachTonality.Any;
+      return ISearchTonality.Any;
     case 'Позитивная':
-      return ISeachTonality.Positive;
+      return ISearchTonality.Positive;
     case 'Нейтральная':
-      return ISeachTonality.Neutral;
+      return ISearchTonality.Neutral;
     case 'Негативная':
-      return ISeachTonality.Negative;
+      return ISearchTonality.Negative;
     default:
-      return ISeachTonality.Any;
+      return ISearchTonality.Any;
   }
 };
 
@@ -42,21 +42,8 @@ export const parseXML = (xmlString: string) => {
     console.log(images)
   }
 
-  // const sentences = Array.from(scandoc.getElementsByTagName('sentence'));
-  // console.log(sentences);
-
   const result = Array.from(scandoc.getElementsByTagName('sentence'))
     .map(sentence => sentence.textContent)
-
-  // console.log(result);
-
-  // const sentences = scandoc.getElementsByTagName('sentence').innerHTML;
-
-  // console.log('sentences', sentences);
-
-  // const imagesArr = sentences.
-
-  //const imagesArr = result.map((sentence) => sentence.ge)
 
   return result.join(' ') || '';
 }

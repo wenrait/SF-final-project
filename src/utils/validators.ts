@@ -1,4 +1,4 @@
-import { ISeachTonality } from "../redux/slices/searchSlice";
+import { ISearchTonality } from "../redux/slices/searchSlice";
 
 export const validateInn = (data: number) => {
   let result = false;
@@ -34,7 +34,7 @@ export const validateInn = (data: number) => {
 };
 
 export const validateTonality = (tonality: string) => {
-  if (!Object.values(ISeachTonality).includes(tonality as ISeachTonality)) {
+  if (!Object.values(ISearchTonality).includes(tonality as ISearchTonality)) {
     return 'Некорректное значение';
   }
 } 

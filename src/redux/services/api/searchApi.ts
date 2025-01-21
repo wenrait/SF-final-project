@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../../store.ts';
 import { ISearchState } from '../../slices/searchSlice.ts';
-import { DocumentsReq, DocumentsRes, ScanDoc, SearchHistogramsRes, SearchRes } from '../../../types.ts';
+import { DocumentsReq, DocumentsRes, SearchHistogramsRes, SearchRes } from '../../../types.ts';
 
 export const searchApi = createApi({
   reducerPath: 'searchApi',
